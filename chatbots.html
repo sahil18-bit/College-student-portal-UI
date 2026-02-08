@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EduPlus/Dashboard</title>
+  <link rel="stylesheet" href="sidebar.css">
+  <link rel="stylesheet" href="dashboard.css">
+  <link rel="stylesheet" href="loader.css">
+  <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+  <link rel="stylesheet" href="https://cdn.lineicons.com/5.0/lineicons.css" />
+  <style>
+    body {
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      min-height: 100vh;
+      margin: 0;
+    }
+    
+    .main {
+      margin-left: 400px;
+      margin-top: 100px;
+      transition: margin-left 0.235s ease-in-out;
+    }
+    #sidebar.expand ~ .main {
+      margin-left: 260px;
+    }
+    #sidebar.expand ~ nav#navbar {
+      margin-left: 260px;
+    }
+    @media (max-width: 768px) {
+      .main {
+        margin-left: 0;
+      }
+      #sidebar.expand ~ .main {
+        margin-left: 0;
+      }
+      #sidebar.expand ~ nav#navbar {
+        margin-left: 0;
+      }
+      #sidebar {
+        transform: translateX(-100%);
+      }
+      #sidebar.expand {
+        transform: translateX(0);
+      }
+    }
+    .card {
+      width: 100%;
+      height: 100%;
+      border-radius: 40px;
+      position: relative;
+      padding: 1.8rem;
+      border: 2px solid #e0e0e0;
+      transition: 0.5s ease-out;
+      overflow: visible;
+      min-height: 300px; /* Added min-height to make cards bigger vertically */
+    }
+    .card-details {
+      color: black;
+      height: 100%;
+      gap: 10px;
+      display: grid;
+      place-content: center;
+    }
+    .card-button {
+      text-align: center;
+      text-decoration: none;
+      position: absolute;
+      bottom: 20px;
+      font-size: 1rem;
+      left: 50%;
+      width: calc(100% - 3.6rem);
+      transform: translateX(-50%);
+      padding: .5rem 1rem;
+      border: none;
+      background-color: #0e223e;
+      color: white;
+      opacity: 0;
+      border-radius: 40px;
+      cursor: pointer;
+      transition: opacity 0.3s ease, background-color 0.3s ease;
+    }
+    .card:hover .card-button {
+      opacity: 1;
+    }
+    .card:hover {
+      border-color: #0e223e;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+    /* Chatbot styles */
+    .chatbot-container {
+      background: rgba(255, 255, 255, 0.95);
+      width: 100%;
+      max-width: 600px;
+      height: 80vh;
+      border-radius: 20px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+      overflow: hidden;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: all 0.3s ease;
+    }
+    .chatbot-container:hover {
+      box-shadow: 0 12px 48px rgba(0,0,0,0.3);
+    }
+    .chat-header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      text-align: center;
+      padding: 20px;
+      font-size: 24px;
+      font-weight: bold;
+      color: white;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+    .chat-box {
+      flex: 1;
+      padding: 20px;
+      overflow-y: auto;
+      background: rgba(255, 255, 255, 0.9);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .bot-message, .user-message {
+      padding: 12px 16px;
+      border-radius: 15px;
+      max-width: 80%;
+      line-height: 1.5em;
+      word-wrap: break-word;
+      animation: fadeIn 0.5s ease-in;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .bot-message {
+      background: linear-gradient(135deg, #263859, #34495e);
+      align-self: flex-start;
+      color: white;
+      box-shadow: 0 2px 8px rgba(38, 56, 89, 0.3);
+    }
+    .user-message {
+      background: linear-gradient(135deg, #4caf50, #45a049);
+      align-self: flex-end;
+      color: white;
+      box-shadow: 0 2px 8px rgba(76, 175, 80, 0.3);
+    }
+    .chat-input {
+      display: flex;
+      padding: 15px;
+      background: rgba(0, 0, 0, 0.1);
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    .chat-input input {
+      flex: 1;
+      padding: 12px 16px;
+      border-radius: 25px;
+      border: none;
+      outline: none;
+      font-size: 16px;
+      background: rgba(255, 255, 255, 0.9);
+      transition: all 0.3s ease;
+    }
+    .chat-input input:focus {
+      background: #fff;
+      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.3);
+    }
+    .chat-input button {
+      margin-left: 10px;
+      background: linear-gradient(135deg, #4caf50, #45a049);
+      border: none;
+      border-radius: 25px;
+      color: white;
+      padding: 12px 20px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 16px;
+      transition: all 0.3s ease;
+    }
+    .chat-input button:hover {
+      background: linear-gradient(135deg, #45a049, #3d8b40);
+      transform: scale(1.05);
+    }
+
+  </style>
+</head>
+<body>
+
+  <!--Navbar Start-->
+  <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top z-3" id="navbar" style="margin-left: 70px;">
+    <div class="container-fluid">
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="nav nav-tabs mx-auto" style="text-decoration: none;">
+          <li class="nav-item">
+            <a class="nav-link active" href="#" style="margin-left: 80px;">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="social.html" style="margin-left: 80px;">Social</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="notice.html" style="margin-left: 80px;">Notices</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#about" style="margin-left: 80px;">AI-Help</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-icon pe-md-0" href="login.html" style="margin-right: 30px;" data-bs-toggle="dropdown">
+              <img src="https://cdn-icons-png.flaticon.com/512/3135/3135768.png" class="avatar img-fluid" alt="User" width="44"/>
+            </a>
+            <div class="dropdown-menu dropdown-menu-end rounded-0 border-0 shadow mt-3">
+              <a class="dropdown-item" href="#">My Profile</a>
+              <a class="dropdown-item" href="#">Settings</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Logout</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!--Navbar End-->
+
+  <!--Sidebar Start-->
+  <div class="wrapper">
+    <aside id="sidebar" class="fixed-top">
+      <!--logo-->
+      <div class="d-flex">
+        <button id="toggle-btn" type="button">
+          <i class="lni lni-layout-9"></i>
+        </button>
+        <div class="sidebar-logo">
+          <a href="#" class="logo"><span class="text-warning">Edu</span>Plus</a>
+        </div>
+      </div>
+
+      <!--list-->
+      <ul class="sidebar-nav">
+        <li class="sidebar-item">
+          <a href="#" class="sidebar-link active">
+            <i class="lni lni-dashboard-square-1"></i>
+            <span>Dashboard</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="assignment.html" class="sidebar-link">
+            <i class="lni lni-notebook-1"></i>
+            <span>Assignments</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="attendance.html" class="sidebar-link">
+            <i class="lni lni-calendar-days"></i>
+            <span>Attendance</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="studym.html" class="sidebar-link">
+            <i class="lni lni-books-2"></i>
+            <span>Study Materials</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="#" class="sidebar-link">
+            <i class="lni lni-gears-3"></i>
+            <span>Project</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="#" class="sidebar-link">
+            <i class="lni lni-bar-chart-4"></i>
+            <span>Academic Progress</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="skilldev.html" class="sidebar-link">
+            <i class="lni lni-laravel"></i>
+            <span>Skill Development</span>
+          </a>
+        </li>
+      </ul>
+      <!--logout-->
+      <div class="sidebar-footer" style="margin-bottom: 20px;">
+        <a href="landing.html" class="sidebar-link logout">
+          <i class="lni lni-exit"></i>
+          <span>Logout</span>
+        </a>
+      </div>
+    </aside>
+    <!--Sidebar End-->
+
+    <!--Main start-->
+    <div class="main">
+      <div class="chatbot-container">
+        <div class="chat-header">
+          <img src="https://cdn-icons-png.flaticon.com/512/4712/4712027.png" width="30" alt="bot">
+          <span>AI-Help Assistant</span>
+        </div>
+
+        <div class="chat-box" id="chatBox">
+          <div class="bot-message">👋 Hi! I'm your AI-Help Assistant. How can I help you today?</div>
+        </div>
+
+        <div class="chat-input">
+          <input type="text" id="userInput" placeholder="Ask me anything..." />
+          <button id="sendBtn">Send</button>
+        </div>
+      </div>
+    </div>
+    <!--Main end-->
+  </div>
+
+  <script src="sidebar.js"></script>
+  <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="jquery-3.7.1.js"></script>
+    <script>
+    // Sidebar toggle
+    document.getElementById('toggle-btn').addEventListener('click', function() {
+      const sidebar = document.getElementById('sidebar');
+      const navbar = document.getElementById('navbar');
+      sidebar.classList.toggle('expand');
+      navbar.classList.toggle('expand');
+    });
+
+    // AI Chatbot functionality
+    const responses = {
+      "hello": "Hello there! 👋 How are you today?",
+      "hi": "Hi! Need any help with assignments or portal?",
+      "how are you": "I'm doing great! Thanks for asking 😄",
+      "help": "Sure! I can guide you with assignments, attendance, or study material access.",
+      "assignment": "You can find assignments under the 'Assignments' section in your sidebar.",
+      "attendance": "Your attendance data is updated weekly under the 'Attendance' tab.",
+      "study material": "Study materials are uploaded by teachers under 'Study Materials'.",
+      "project": "Projects are managed under the 'Project' tab. You can upload or view updates there.",
+      "bye": "Goodbye! 👋 Have a nice day ahead."
+    };
+
+    document.getElementById("sendBtn").addEventListener("click", sendMessage);
+    document.getElementById("userInput").addEventListener("keypress", e => {
+      if (e.key === "Enter") sendMessage();
+    });
+
+    function sendMessage() {
+      const input = document.getElementById("userInput");
+      const message = input.value.trim();
+      if (message === "") return;
+
+      const chatBox = document.getElementById("chatBox");
+      chatBox.innerHTML += `<div class='user-message'>${message}</div>`;
+      input.value = "";
+
+      setTimeout(() => {
+        let reply = "Sorry, I don't have an answer for that yet.";
+        for (let key in responses) {
+          if (message.toLowerCase().includes(key)) {
+            reply = responses[key];
+            break;
+          }
+        }
+        chatBox.innerHTML += `<div class='bot-message'>${reply}</div>`;
+        chatBox.scrollTop = chatBox.scrollHeight;
+      }, 600);
+    }
+  </script>
+
+</script>
+</body>
+</html>

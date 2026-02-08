@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduPlus/Project</title>
+    <link rel="stylesheet" href="sidebar.css">
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="loader.css">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdn.lineicons.com/5.0/lineicons.css" />
+    <style>
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .main {
+            margin-left: 30vh;
+            transition: margin-left 0.235s ease-in-out;
+        }
+        #sidebar.expand ~ .main {
+            margin-left: 260px;
+        }
+        #sidebar.expand ~ nav#navbar {
+            margin-left: 260px;
+        }
+        @media (max-width: 768px) {
+            .main {
+                margin-left: 0;
+            }
+            #sidebar.expand ~ .main {
+                margin-left: 0;
+            }
+            #sidebar.expand ~ nav#navbar {
+                margin-left: 0;
+            }
+            #sidebar {
+                transform: translateX(-100%);
+            }
+            #sidebar.expand {
+                transform: translateX(0);
+            }
+        }
+        .card {
+            width: 100%;
+            height: 100%;
+            border-radius: 40px;
+            position: relative;
+            padding: 1.8rem;
+            border: 2px solid #e0e0e0;
+            transition: 0.5s ease-out;
+            overflow: visible;
+            min-height: 300px; /* Default for upload card */
+        }
+        .project-card {
+            min-height: 60px; /* Very thin for project cards */
+            padding: 0.5rem 1.8rem; /* Reduced padding */
+        }
+        .card-details {
+            color: black;
+            height: 100%;
+            gap: 10px;
+            display: grid;
+            place-content: center;
+        }
+        .project-card .card-details {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            place-content: unset; /* Override centering for thin cards */
+        }
+        .card-button {
+            text-align: center;
+            text-decoration: none;
+            position: absolute;
+            bottom: 20px;
+            font-size: 1rem;
+            left: 50%;
+            width: calc(100% - 3.6rem);
+            transform: translateX(-50%);
+            padding: .5rem 1rem;
+            border: none;
+            background-color: #0e223e;
+            color: white;
+            opacity: 0;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: opacity 0.3s ease, background-color 0.3s ease;
+        }
+        .project-card .card-button {
+            position: static; /* Make button inline for thin cards */
+            opacity: 1; /* Always visible */
+            width: auto;
+            transform: none;
+            margin-left: auto;
+        }
+        .card:hover .card-button {
+            opacity: 1;
+        }
+        .card:hover {
+            border-color: #0e223e;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!--Navbar Start-->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top z-3" id="navbar" style="margin-left: 70px;">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="nav nav-tabs mx-auto" style="text-decoration: none;">
+                    <li class="nav-item">
+                        <a class="nav-link" href="dashboard.html" style="margin-left: 80px;">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="social.html" style="margin-left: 80px;">Social</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="notice.html" style="margin-left: 80px;">Notices</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about" style="margin-left: 80px;">AI-Help</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-icon pe-md-0" href="login.html" style="margin-right: 30px;" data-bs-toggle="dropdown">
+                            <img src="https://cdn-icons-png.flaticon.com/512/3135/3135768.png" class="avatar img-fluid" alt="User" width="44"/>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end rounded-0 border-0 shadow mt-3">
+                            <a class="dropdown-item" href="profile.html">My Profile</a>
+                            <a class="dropdown-item" href="#">Settings</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="landing.html">Logout</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!--Navbar End-->
+
+    <!--Sidebar Start-->
+    <div class="wrapper">
+        <aside id="sidebar" class="fixed-top">
+            <!--logo-->
+            <div class="d-flex">
+                <button id="toggle-btn" type="button">
+                    <i class="lni lni-layout-9"></i>
+                </button>
+                <div class="sidebar-logo">
+                    <a href="#" class="logo"><span class="text-warning">Edu</span>Plus</a>
+                </div>
+            </div>
+
+            <!--list-->
+            <ul class="sidebar-nav">
+                <li class="sidebar-item">
+                    <a href="dashboard.html" class="sidebar-link">
+                        <i class="lni lni-dashboard-square-1"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="assignment.html" class="sidebar-link">
+                        <i class="lni lni-notebook-1"></i>
+                        <span>Assignments</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="attendance.html" class="sidebar-link">
+                        <i class="lni lni-calendar-days"></i>
+                        <span>Attendance</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="studym.html" class="sidebar-link">
+                        <i class="lni lni-books-2"></i>
+                        <span>Study Materials</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="#" class="sidebar-link active">
+                        <i class="lni lni-gears-3"></i>
+                        <span>Project</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="academic_progress.html" class="sidebar-link">
+                        <i class="lni lni-bar-chart-4"></i>
+                        <span>Academic Progress</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="skilldev.html" class="sidebar-link">
+                        <i class="lni lni-laravel"></i>
+                        <span>Skill Development</span>
+                    </a>
+                </li>
+            </ul>
+            <!--logout-->
+            <div class="sidebar-footer" style="margin-bottom: 20px;">
+                <a href="landing.html" class="sidebar-link logout">
+                    <i class="lni lni-exit"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+        <!--Sidebar End-->
+
+        <!--Main start-->
+        <div class="main p-3">
+            <div class="container" style="margin-top: 90px;">
+                <div class="row g-3">
+
+                    <!-- Upload Project Card -->
+                    <div class="col-12">
+                        <div class="card h-100">
+                            <div class="card-details">
+                                <h3>🔧 Upload Project</h3>
+                                <label for="projectFile" class="form-label">Select your project file</label>
+                                <input class="form-control" type="file" id="projectFile" accept=".pdf,.docx,.zip,.jpg,.png">
+                                <button class="btn btn-success mt-3 w-100" id="uploadProjectBtn">Upload Project</button>
+                                <div class="mt-2 text-success" id="projectMsg" style="display:none;">✅ Project uploaded successfully!</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Uploaded Projects Cards -->
+                    <div id="projectsContainer" class="col-12">
+                        <!-- Projects will be dynamically added here -->
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!--Main end-->
+    </div>
+
+    <script src="jquery-3.7.1.js"></script>
+    <script src="sidebar.js"></script>
+    <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Pseudo pre-added projects
+        const preAddedProjects = [
+            { name: "Project Alpha.pdf", date: "2023-10-01" },
+            { name: "Project Beta.docx", date: "2023-09-15" },
+            { name: "Project Gamma.zip", date: "2023-08-20" }
+        ];
+
+        // Function to load projects from localStorage or initialize with pre-added
+        function loadProjects() {
+            let projects = JSON.parse(localStorage.getItem('uploadedProjects')) || [];
+            // Add pre-added projects if not already present
+            preAddedProjects.forEach(preProject => {
+                if (!projects.some(p => p.name === preProject.name)) {
+                    projects.push(preProject);
+                }
+            });
+            localStorage.setItem('uploadedProjects', JSON.stringify(projects));
+            displayProjects(projects);
+        }
+
+        // Function to display projects as separate thin cards
+        function displayProjects(projects) {
+            const projectsContainer = document.getElementById('projectsContainer');
+            projectsContainer.innerHTML = '';
+            if (projects.length === 0) {
+                projectsContainer.innerHTML = '<div class="col-12"><div class="card h-100 project-card"><div class="card-details"><p>No projects uploaded yet.</p></div></div></div>';
+            } else {
+                projects.forEach((project, index) => {
+                    const projectCard = document.createElement('div');
+                    projectCard.className = 'col-12 mb-3';
+                    projectCard.innerHTML = `
+                        <div class="card h-100 project-card">
+                            <div class="card-details">
+                                <div>
+                                    <strong>${project.name}</strong> - Uploaded on ${project.date}
+                                </div>
+                                <button class="card-button" onclick="deleteProject(${index})">Delete</button>
+                            </div>
+                        </div>
+                    `;
+                    projectsContainer.appendChild(projectCard);
+                });
+            }
+        }
+
+        // Function to delete a project
+        function deleteProject(index) {
+            let projects = JSON.parse(localStorage.getItem('uploadedProjects')) || [];
+            projects.splice(index, 1);
+            localStorage.setItem('uploadedProjects', JSON.stringify(projects));
+            displayProjects(projects);
+        }
+
+        // Upload button event listener
+        document.getElementById('uploadProjectBtn').addEventListener('click', function() {
+            const fileInput = document.getElementById('projectFile');
+            const msg = document.getElementById('projectMsg');
+            if (fileInput.files.length > 0) {
+                const file = fileInput.files[0];
+                const project = {
+                    name: file.name,
+                    date: new Date().toISOString().split('T')[0] // Current date
+                };
+                let projects = JSON.parse(localStorage.getItem('uploadedProjects')) || [];
+                projects.push(project);
+                localStorage.setItem('uploadedProjects', JSON.stringify(projects));
+                displayProjects(projects);
+                msg.style.display = 'block';
+                setTimeout(() => msg.style.display = 'none', 3000); // Hide message after 3 seconds
+                fileInput.value = ''; // Clear input
+            } else {
+                alert('Please select a file to upload.');
+            }
+        });
+
+        // Load projects on page load
+        window.addEventListener('load', loadProjects);
+    </script>
+</body>
+
+</html>

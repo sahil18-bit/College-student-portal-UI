@@ -1,0 +1,136 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
+*,
+::after,
+::before {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+h3 {
+  font-size: 1.2375rem;
+  color: #fff;
+}
+
+a {
+  cursor: pointer;
+  text-decoration: none;
+  font-family: "Poppins", sans-serif;
+}
+
+li {
+  list-style: none;
+}
+
+/* Layout skeleton */
+
+.wrapper {
+  align-items: stretch;
+  display: flex;
+  width: 100%;
+}
+
+#sidebar {
+  width: 70px;
+  min-width: 70px;
+  height: 100vh;
+  transition: all 0.235s ease-in-out;
+  box-shadow: 0 0 35px 0 rgba(49, 57, 66, 0.5);
+  z-index: 1000;
+  background-color:#0e223e;
+  display: flex;
+  flex-direction: column;
+}
+
+
+#navbar.expand{
+  margin-left: 260px;
+}
+
+#sidebar.expand{
+    width: 260px;
+    min-width: 260px;
+}
+
+.container {
+  display: flex;       /* Activates Flexbox on the parent */
+  align-items: center; /* Vertically centers items along the cross-axis */
+  gap: 20px;           /* Adds space between the image and the text */
+}
+
+#sidebar:not(.expand) a.logo,
+#sidebar:not(.expand) a.sidebar-link span{
+    display :none;
+}
+
+#toggle-btn{
+    background: transparent;
+    cursor: pointer;
+    border: none;
+    padding: 1rem 1.5rem;
+}
+
+#toggle-btn i {
+    font-size:1.5rem;
+    color:#fff;
+}
+
+.text-warning {
+  color: #ffc107 !important;
+  font-weight: 700;
+  font-size: 2rem;
+  color: #333;
+}
+
+.sidebar-logo{
+    margin: auto 0;
+}
+
+.sidebar-logo a{
+          font-weight: 700;
+          font-size: 2rem;
+          color: #fff;
+          text-decoration: none;
+}
+
+.sidebar-nav{
+    padding: 2rem 0;
+    flex: 1 1 auto;
+}
+a.sidebar-link{
+    padding: .625rem 1.625rem;
+    color:#fff;
+    display: block;
+    font-size: .9rem;
+    white-space: nowrap;
+    text-decoration: none;
+    border-left: 3px solid transparent;
+}
+
+.sidebar-link i{
+    font-size: 1.1rem;
+    margin-right: .75rem;
+}
+
+a.sidebar-link:hover,
+a.sidebar-link.active{
+    background-color: #1a2d5c;
+    border-left: 3px solid #ffc107;
+}
+
+a.sidebar-link.logout:hover{
+    background-color: #1a2d5c;
+    border-left: 3px solid #ff0b07;
+}
+
+.sidebar-item{
+    position: relative;
+}

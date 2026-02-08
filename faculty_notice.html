@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Faculty Notices - EduPlus</title>
+  <link rel="stylesheet" href="sidebar.css">
+  <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+  <link rel="stylesheet" href="loader.css">
+  <link rel="stylesheet" href="https://cdn.lineicons.com/5.0/lineicons.css" />
+  <style>
+    body {
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      min-height: 100vh;
+      margin: 0;
+    }
+    .main {
+      margin-left: 70px;
+      transition: margin-left 0.235s ease-in-out;
+      margin-top: 80px; /* Adjust for fixed navbar */
+    }
+    #sidebar.expand ~ .main {
+      margin-left: 260px;
+    }
+    .card {
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+      margin-bottom: 20px;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+    }
+    .notice-date {
+      font-size: 0.9em;
+      color: #666;
+    }
+    .notice-title {
+      font-weight: bold;
+      color: #333;
+    }
+    .add-notice-form {
+      background: #f8f9fa;
+      padding: 20px;
+      border-radius: 15px;
+      margin-bottom: 30px;
+    }
+  </style>
+</head>
+<body>
+        
+  <!--Loader Start-->
+  
+  <div class="loader-wrapper">
+  <span class="loader"><span class="loader-inner"></span></span>
+  </div>
+
+  <!-- Navbar Start -->
+  <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top z-3" id="navbar" style="margin-left: 70px;">
+    <div class="container-fluid">
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="nav nav-tabs mx-auto" style="text-decoration: none;">
+          <li class="nav-item">
+            <a class="nav-link" href="faculty_dashboard.html" style="margin-left: 80px;">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="faculty_social.html" style="margin-left: 80px;">Social</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="faculty_notice.html" style="margin-left: 80px;">Notices</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#about" style="margin-left: 80px;">AI-Help</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-icon pe-md-0" href="login.html" style="margin-right: 30px;" data-bs-toggle="dropdown">
+              <img src="https://cdn-icons-png.flaticon.com/512/3135/3135768.png" alt="User" width="44"/>
+            </a>
+              <div class="dropdown-menu dropdown-menu-end rounded-0 border-0 shadow mt-3">
+              <a class="dropdown-item" href="faculty_profile.html">My Profile</a>
+              <a class="dropdown-item" href="#">Settings</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="landing.html">Logout</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- Navbar End -->
+
+  <!-- Sidebar Start -->
+  <div class="wrapper">
+    <aside id="sidebar" class="fixed-top">
+      <!-- Logo -->
+      <div class="d-flex">
+        <button id="toggle-btn" type="button">
+          <i class="lni lni-layout-9"></i>
+        </button>
+        <div class="sidebar-logo">
+          <a href="#" class="logo"><span class="text-warning">Edu</span>Plus</a>
+        </div>
+      </div>
+
+      <!-- List -->
+      <ul class="sidebar-nav">
+        <li class="sidebar-item">
+          <a href="faculty_dashboard.html" class="sidebar-link">
+            <i class="lni lni-dashboard-square-1"></i>
+            <span>Dashboard</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="faculty_assignment.html" class="sidebar-link">
+            <i class="lni lni-notebook-1"></i>
+            <span>Assignments</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="faculty_attendance.html" class="sidebar-link">
+            <i class="lni lni-calendar-days"></i>
+            <span>Attendance</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="faculty_studym.html" class="sidebar-link">
+            <i class="lni lni-books-2"></i>
+            <span>Study Materials</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="faculty_project.html" class="sidebar-link">
+            <i class="lni lni-gears-3"></i>
+            <span>Project</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="faculty_academic_progress.html" class="sidebar-link">
+            <i class="lni lni-bar-chart-4"></i>
+            <span>Academic Progress</span>
+          </a>
+        </li>
+      </ul>
+
+      <!-- Logout -->
+      <div class="sidebar-footer" style="margin-bottom: 20px;">
+        <a href="landing.html" class="sidebar-link logout">
+          <i class="lni lni-exit"></i>
+          <span>Logout</span>
+        </a>
+      </div>
+    </aside>
+    <!-- Sidebar End -->
+
+    <!-- Main Start -->
+    <div class="main p-5">
+      <div id="noticeSection">
+        <h3 class="mb-4">📢 Faculty Notices</h3>
+        
+        <!-- Add New Notice Form -->
+        <div class="add-notice-form">
+          <h5>Add New Notice</h5>
+          <form id="addNoticeForm">
+            <div class="mb-3">
+              <label for="noticeTitle" class="form-label">Title</label>
+              <input type="text" class="form-control" id="noticeTitle" required>
+            </div>
+            <div class="mb-3">
+              <label for="noticeDate" class="form-label">Date</label>
+              <input type="date" class="form-control" id="noticeDate" required>
+            </div>
+            <div class="mb-3">
+              <label for="noticeContent" class="form-label">Content</label>
+              <textarea class="form-control" id="noticeContent" rows="3" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Add Notice</button>
+          </form>
+        </div>
+
+        <!-- Notices List -->
+        <div id="noticesList" class="row">
+          <!-- Pre-made Notices -->
+          <div class="col-md-6">
+            <div class="card p-3">
+              <div class="card-body">
+                <h5 class="card-title notice-title">📅 Faculty Meeting Reminder</h5>
+                <p class="card-text notice-date">Posted on: October 15, 2023 by Dr. Smith</p>
+                <p class="card-text">All faculty members are required to attend the monthly meeting on October 20th at 10 AM.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card p-3">
+              <div class="card-body">
+                <h5 class="card-title notice-title">🏆 Research Grant Application</h5>
+                <p class="card-text notice-date">Posted on: October 10, 2023 by Prof. Johnson</p>
+                <p class="card-text">Applications for the new research grant are now open. Deadline: November 1st.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card p-3">
+              <div class="card-body">
+                <h5 class="card-title notice-title">🎓 Guest Lecture Series</h5>
+                <p class="card-text notice-date">Posted on: October 5, 2023 by Dr. Lee</p>
+                <p class="card-text">We are hosting a guest lecture on AI advancements on November 5th. All interested faculty welcome.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card p-3">
+              <div class="card-body">
+                <h5 class="card-title notice-title">📚 Curriculum Update</h5>
+                <p class="card-text notice-date">Posted on: September 28, 2023 by Dean Williams</p>
+                <p class="card-text">The curriculum for the upcoming semester has been updated. Please review the changes.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Main End -->
+
+    <script src="sidebar.js"></script>
+    <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="jquery-3.7.1.js"></script>
+    <script type="module">
+  // 🔹 Import Firebase SDKs
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+  import {
+    getFirestore,
+    collection,
+    addDoc,
+    getDocs
+  } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+  // 🔹 Your Firebase Configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyAHeK1kyuhRbgqWYAE_pDkc69Y...",
+    authDomain: "university-portal.firebaseapp.com",
+    projectId: "university-portal",
+    storageBucket: "university-portal.appspot.com",
+    messagingSenderId: "356055069350",
+    appId: "1:356055069350:web:deaf28303292b07a0f65f9"
+  };
+
+  // 🔹 Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  // Simulate current faculty user (for now)
+  const currentFaculty = "Dr. Smith";
+
+  // 🔹 Fetch existing notices from Firestore on page load
+  async function loadNotices() {
+    const noticesList = document.getElementById('noticesList');
+    noticesList.innerHTML = ""; // Clear any existing notices
+
+    try {
+      const querySnapshot = await getDocs(collection(db, "notices"));
+      querySnapshot.forEach((doc) => {
+        const data = doc.data();
+        const newCard = document.createElement('div');
+        newCard.className = 'col-md-6';
+        newCard.innerHTML = `
+          <div class="card p-3">
+            <div class="card-body">
+              <h5 class="card-title notice-title">${data.title}</h5>
+              <p class="card-text notice-date">Posted on: ${data.date} by ${data.faculty}</p>
+              <p class="card-text">${data.content}</p>
+            </div>
+          </div>
+        `;
+        noticesList.appendChild(newCard);
+      });
+    } catch (error) {
+      console.error("❌ Error fetching notices:", error);
+    }
+  }
+
+  // 🔹 Handle adding new notice (save to Firestore + display)
+  document.getElementById('addNoticeForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const title = document.getElementById('noticeTitle').value;
+    const date = new Date().toLocaleDateString();
+    const content = document.getElementById('noticeContent').value;
+
+    const noticesList = document.getElementById('noticesList');
+
+    try {
+      // Save to Firestore
+      await addDoc(collection(db, "notices"), {
+        title: title,
+        date: date,
+        content: content,
+        faculty: currentFaculty
+      });
+
+      // Create new notice card (same UI)
+      const newCard = document.createElement('div');
+      newCard.className = 'col-md-6';
+      newCard.innerHTML = `
+        <div class="card p-3">
+          <div class="card-body">
+            <h5 class="card-title notice-title">${title}</h5>
+            <p class="card-text notice-date">Posted on: ${date} by ${currentFaculty}</p>
+            <p class="card-text">${content}</p>
+          </div>
+        </div>
+      `;
+      noticesList.appendChild(newCard);
+
+      // Clear form
+      this.reset();
+      alert('✅ Notice added successfully!');
+    } catch (error) {
+      console.error("❌ Error adding notice:", error);
+      alert("Error adding notice. Check console for details.");
+    }
+  });
+
+  // 🔹 Fade out loader animation
+  $(window).on("load", function() {
+    $(".loader-wrapper").fadeOut("slow");
+  });
+
+  // 🔹 Load notices when page opens
+  loadNotices();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+     <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+    <style>
+        body {
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #ffffff;
+            font-family: Arial, sans-serif;
+            background-image: url(Images/login_bg.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed;
+        }
+        .login-box {
+            background: rgb(255, 255, 255);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            width: 100%;
+            max-width: 350px;
+            color: #070707;
+            float:right
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        .btn-primary {
+            width: 100%;
+            color: white;
+            background-color: red;
+            border: none;
+        }
+        #logo {
+            display: block;
+            margin: 0 auto 20px auto;
+            width: 160px;;
+            height: auto;
+        }
+        #s, #p {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .form-inline-group {
+            margin-bottom: 10px;
+        }
+        .btn-warning {
+            background-color: #0056d2;
+            border: none;
+            width: 100%;
+            color: white;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="login-box">
+        <img src="Images/login_student.jpg" style="background: transparent;" id="logo"></image>
+        <hr>
+        <form id="loginForm">
+            <div class="form-group d-flex align-items-center form-inline-group">
+                <label for="username" class="mb-0 mr-2" style="font-weight: bold; margin-right: 10px;">SAP ID</label>
+                <input type="text" class="form-control" id="username" placeholder="Enter SAP ID" style="width: 180px;">
+            </div>
+            <div class="form-group d-flex align-items-center form-inline-group">
+                <label for="password" class="mb-0 mr-2" style="font-weight: bold; margin-right: 10px;">Password</label>
+                <input type="password" class="form-control" id="password" placeholder="Enter Password" style="width: 180px;">
+            </div>
+           <a href="dashboard.html" class="btn btn-warning mt3">Login</a>
+        </form>
+        <p style="font-family: 'Times New Roman', Times, serif; font-weight: bold;">For further queries contact us at: <br> <a href="#">+91 9998887770</a></p>
+    </div>
+
+   <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

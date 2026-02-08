@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="sidebar.css">
+  <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+  <link rel="stylesheet" href="https://cdn.lineicons.com/5.0/lineicons.css" />
+  <style>
+    body {
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      min-height: 100vh;
+      margin: 0;
+    }
+    .main {
+      margin-left: 90px;
+      transition: margin-left 0.235s ease-in-out;
+    }
+    .card {
+      width: 100%; /* Use full width within column */
+      height: 100%;
+      width:70vh;
+      border-radius: 40px;
+      position: relative;
+      padding: 1.8rem;
+      border: 2px solid #e0e0e0;
+      transition: 0.5s ease-out;
+      overflow: visible;
+      min-height: 300px; /* Consistent height */
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .card-img-top {
+      width: 100%;
+      height: 200px; /* Fixed height for images */
+      object-fit: cover;
+      border-radius: 20px;
+    }
+    .card-text {
+      color: black;
+      text-align: center;
+      font-weight: bold;
+      margin: 10px 0;
+    }
+    .card-button {
+      text-align: center;
+      text-decoration: none;
+      position: absolute;
+      bottom: 20px;
+      font-size: 1rem;
+      left: 50%;
+      width: calc(100% - 3.6rem);
+      transform: translateX(-50%);
+      padding: .5rem 1rem;
+      border: none;
+      background-color: #0e223e;
+      color: white;
+      opacity: 0;
+      border-radius: 40px;
+      cursor: pointer;
+      transition: opacity 0.3s ease, background-color 0.3s ease;
+    }
+    .card:hover .card-button {
+      opacity: 1;
+    }
+    .card:hover {
+      border-color: #0e223e;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+    #sidebar.expand ~ .main {
+      margin-left: 260px;
+    }
+    /* Ensure cards are same size */
+    .col-md-6 {
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar Start -->
+  <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top z-3" id="navbar" style="margin-left: 70px;">
+    <div class="container-fluid">
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="nav nav-tabs mx-auto" style="text-decoration: none;">
+          <li class="nav-item">
+            <a class="nav-link active" href="#" style="margin-left: 80px;">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="social.html" style="margin-left: 80px;">Social</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="notice.html" style="margin-left: 80px;">Notices</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#about" style="margin-left: 80px;">AI-Help</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-icon pe-md-0" href="login.html" style="margin-right: 30px;" data-bs-toggle="dropdown">
+              <img src="https://cdn-icons-png.flaticon.com/512/3135/3135768.png" alt="User" width="44"/>
+            </a>
+              <div class="dropdown-menu dropdown-menu-end rounded-0 border-0 shadow mt-3">
+              <a class="dropdown-item" href="profile.html">My Profile</a>
+              <a class="dropdown-item" href="#">Settings</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="landing.html">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- Navbar End -->
+
+  <!-- Sidebar Start -->
+  <div class="wrapper">
+    <aside id="sidebar" class="fixed-top">
+      <!-- Logo -->
+      <div class="d-flex">
+        <button id="toggle-btn" type="button">
+          <i class="lni lni-layout-9"></i>
+        </button>
+        <div class="sidebar-logo">
+          <a href="#" class="logo"><span class="text-warning">Edu</span>Plus</a>
+        </div>
+      </div>
+
+      <!-- List -->
+      <ul class="sidebar-nav">
+        <li class="sidebar-item">
+          <a href="dashboard.html" class="sidebar-link">
+            <i class="lni lni-dashboard-square-1"></i>
+            <span>Dashboard</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="assignment.html" class="sidebar-link">
+            <i class="lni lni-notebook-1"></i>
+            <span>Assignments</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="attendance.html" class="sidebar-link">
+            <i class="lni lni-calendar-days"></i>
+            <span>Attendance</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="#" class="sidebar-link active">
+            <i class="lni lni-books-2"></i>
+            <span>Study Materials</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="project.html" class="sidebar-link">
+            <i class="lni lni-gears-3"></i>
+            <span>Project</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="academic_progress.html" class="sidebar-link">
+            <i class="lni lni-bar-chart-4"></i>
+            <span>Academic Progress</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="skilldev.html" class="sidebar-link">
+            <i class="lni lni-laravel"></i>
+            <span>Skill Development</span>
+          </a>
+        </li>
+      </ul>
+
+      <!-- Logout -->
+      <div class="sidebar-footer" style="margin-bottom: 20px;">
+        <a href="landing.html" class="sidebar-link logout">
+          <i class="lni lni-exit"></i>
+          <span>Logout</span>
+        </a>
+      </div>
+    </aside>
+    <!-- Sidebar End -->
+
+    <!-- Main Start -->
+    <div class="main p-5" style="margin-top: 40px;">
+      <div id="studySection" style="display:block;">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="card w-100 h-100" id="Modules">
+              <img src="Images/yt.jpg" class="card-img-top" alt="...">
+              <div class="card-body">
+                <p class="card-text">Modules</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card" id="PQ">
+              <img src="Images/questionpaper.jpg" class="card-img-top" alt="...">
+              <div class="card-body">
+                <p class="card-text">Past Question Papers</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="librarySection" style="display:block;">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="card" id="rpSection">
+              <img src="Images/research.jpg" class="card-img-top" alt="...">
+              <div class="card-body">
+                <p class="card-text">Research Paper</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card" id="ebookSection">
+              <img src="Images/modules.jpg" class="card-img-top" alt="...">
+              <div class="card-body">
+                <p class="card-text">Ebooks</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="libmaterialsSection" class="mt-4">
+          <p>Select a category to view resources.</p>
+        </div>
+      </div>
+    </div>
+    <!-- Main End -->
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="sidebar.js"></script>
+  <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Modules section - YouTube videos
+    const modules = [
+      { title: "Introduction to Programming", url: "https://www.youtube.com/watch?v=example1" },
+      { title: "Data Structures Basics", url: "https://www.youtube.com/watch?v=example2" },
+      { title: "Web Development Fundamentals", url: "https://www.youtube.com/watch?v=example3" },
+      { title: "Machine Learning Overview", url: "https://www.youtube.com/watch?v=example4" },
+      { title: "Database Management", url: "https://www.youtube.com/watch?v=example5" },
+      { title: "Cybersecurity Essentials", url: "https://www.youtube.com/watch?v=example6" }
+    ];
+
+    $("#Modules").click(function (e) {
+      e.preventDefault();
+      $('.row').hide();
+      renderModules(false);
+    });
+
+    function renderModules(showAll = false) {
+      let count = showAll ? modules.length : 5;
+      let html = `
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h5 class="mb-0">📹 Modules (YouTube Videos)</h5>
+          <button id="backToMain" class="btn btn-primary btn-sm ml-auto">Back</button>
+        </div>
+        <ul>
+        ${modules.slice(0, count).map(module =>
+          `<li><a href="${module.url}" target="_blank">${module.title}</a></li>`
+        ).join('')}
+        </ul>
+        ${!showAll && modules.length > 5
+          ? '<button id="showMoreModules" class="btn btn-secondary btn-sm mt-2">Show More</button>'
+          : ''}
+      `;
+      $('#libmaterialsSection').html(html);
+      $('#libmaterialsSection').show();
+    }
+
+    $(document).on('click', '#showMoreModules', function () {
+      renderModules(true);
+    });
+
+    // Past Question Papers section
+    const pastQuestions = [
+      { title: "Math Exam 2023", url: "https://example.com/math2023.pdf" },
+      { title: "Physics Paper 2022", url: "https://example.com/physics2022.pdf" },
+      { title: "Chemistry Test 2021", url: "https://example.com/chem2021.pdf" },
+      { title: "Biology Questions 2020", url: "https://example.com/bio2020.pdf" },
+      { title: "History Exam 2019", url: "https://example.com/history2019.pdf" },
+      { title: "English Literature 2018", url: "https://example.com/english2018.pdf" }
+    ];
+
+    $("#PQ").click(function (e) {
+      e.preventDefault();
+      $('.row').hide();
+      renderPastQuestions(false);
+    });
+
+    function renderPastQuestions(showAll = false) {
+      let count = showAll ? pastQuestions.length : 5;
+      let html = `
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h5 class="mb-0">📄 Past Question Papers</h5>
+          <button id="backToMain" class="btn btn-primary btn-sm ml-auto">Back</button>
+        </div>
+        <ul>
+        ${pastQuestions.slice(0, count).map(pq =>
+          `<li><a href="${pq.url}" target="_blank">${pq.title}</a></li>`
+        ).join('')}
+        </ul>
+        ${!showAll && pastQuestions.length > 5
+          ? '<button id="showMorePQ" class="btn btn-secondary btn-sm mt-2">Show More</button>'
+          : ''}
+      `;
+      $('#libmaterialsSection').html(html);
+      $('#libmaterialsSection').show();
+    }
+
+    $(document).on('click', '#showMorePQ', function () {
+      renderPastQuestions(true);
+    });
+
+    // Ebooks section
+    const ebook = [
+      { title: "Python for Data Science", url: "https://example.com/python-ds" },
+      { title: "Modern Web Development", url: "https://example.com/web-dev" },
+      { title: "Python for Data Science", url: "https://example.com/python-ds" },
+      { title: "Modern Web Development", url: "https://example.com/web-dev" },
+      { title: "Python for Data Science", url: "https://example.com/python-ds" },
+      { title: "Modern Web Development", url: "https://example.com/web-dev" },
+      { title: "Python for Data Science", url: "https://example.com/python-ds" },
+      { title: "Modern Web Development", url: "https://example.com/web-dev" },
+      { title: "Python for Data Science", url: "https://example.com/python-ds" },
+      { title: "Modern Web Development", url: "https://example.com/web-dev" },
+      { title: "Python for Data Science", url: "https://example.com/python-ds" },
+      { title: "Modern Web Development", url: "https://example.com/web-dev" }
+    ];
+
+    $(document).on('click', '#showMoreBooks', function () {
+      renderEbooklink(true);
+    });
+
+    function renderEbooklink(showAll = false) {
+      let count = showAll ? ebook.length : 5;
+      let html = `
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h5 class="mb-0">📚 Ebooks</h5>
+          <button id="backToMain" class="btn btn-primary btn-sm ml-auto">Back</button>
+        </div>
+        <ul>
+        ${ebook.slice(0, count).map(book =>
+          `<li><a href="${book.url}" target="_blank">${book.title}</a></li>`
+        ).join('')}
+        </ul>
+        ${!showAll && ebook.length > 5
+          ? '<button id="showMoreBooks" class="btn btn-secondary btn-sm mt-2">Show More</button>'
+          : ''}
+      `;
+      $('#libmaterialsSection').html(html);
+      $('#libmaterialsSection').show();
+    }
+
+    $('#ebookSection').click(function () {
+      $('.row').hide();
+      renderEbooklink(false);
+    });
+
+    // Research papers section
+    const researchPapers = [
+      { title: "Harnessing AI and Machine Learning for Precision Medicine:", url: "https://drive.google.com/file/d/19LY9xZtdEzmEbrbtPheZANTgf8tDwGCX/view?usp=drive_link" },
+      { title: "Preditive coding light", url: "https://example.com/blockchain" },
+      { title: "Hierarchical interactions between sensorycortices defy predictive coding", url: "https://drive.google.com/drive/u/0/folders/1ZJ6k4b6qt7_yKLRdKIB8PY3EocUe05g4" },
+      { title: "IoT for Smart Cities", url: "https://example.com/iot-cities" },
+      { title: "Renewable Energy Systems", url: "https://example.com/renewable" },
+      { title: "Genomics & Data Science", url: "https://example.com/genomics" },
+      { title: "Robotics Process Automation", url: "https://example.com/rpa" },
+      { title: "Quantum Computing", url: "https://example.com/quantum" },
+      { title: "Big Data Analytics", url: "https://example.com/bigdata" },
+    ];
+
+    $(document).on('click', '#showMorePapers', function () {
+      renderResearchPapers(true);
+    });
+
+    $('#rpSection').click(function () {
+      $('.row').hide();
+      renderResearchPapers(false);
+    });
+
+    function renderResearchPapers(showAll = false) {
+      let count = showAll ? researchPapers.length : 5;
+      let html = `
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h5 class="mb-0">🧠 Research Papers</h5>
+          <button id="backToMain" class="btn btn-primary btn-sm ml-auto">Back</button>
+        </div>
+        <ul>
+        ${researchPapers.slice(0, count).map(paper =>
+          `<li><a href="${paper.url}" target="_blank">${paper.title}</a></li>`
+        ).join('')}
+        </ul>
+        ${!showAll && researchPapers.length > 5
+          ? '<button id="showMorePapers" class="btn btn-secondary btn-sm mt-2">Show More</button>'
+          : ''}
+      `;
+      $('#libmaterialsSection').html(html);
+      $('#libmaterialsSection').show();
+    }
+
+    // Back to main function
+    $(document).on('click', '#backToMain', function () {
+      $('.row').show();
+      $('#libmaterialsSection').hide();
+    });
+  </script>
+</body>
+</html>

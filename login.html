@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Institution Portal</title>
+  <link rel="stylesheet" href="/Project/bootstrap/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap');
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Poppins", sans-serif;
+      overflow: hidden;
+      color: white;
+    }
+
+    /* Welcome Header */
+    .welcome-header {
+      position: absolute;
+      top: 100px;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      z-index: 10;
+    }
+
+    .welcome-header h2 {
+      font-weight: 800; /* Make it bolder */
+      font-size: 2.5rem; /* Larger font size for emphasis */
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+      color: white;
+      margin: 0;
+    }
+
+    /* Background Particles */
+    #particles-js {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #007cf0, #00dfd8);
+      z-index: -1;
+    }
+
+    /* Centered Layout */
+    .container {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding-top: 100px; /* Adjusted to account for the header */
+    }
+
+    /* Floating Animation */
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
+    }
+
+    /* Card Design */
+    .card {
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      border-radius: 15px;
+      backdrop-filter: blur(6px);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      animation: float 5s ease-in-out infinite;
+      position: relative;
+      overflow: hidden;
+      width: 300px; /* Make cards small */
+      margin: 0 auto; /* Center cards */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    /* Glowing Outline Animation */
+    .card::before {
+      content: "";
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      background: linear-gradient(45deg, #00e1ff, #007cf0, #00dfd8, #00b7ff);
+      z-index: -1;
+      border-radius: 17px;
+      background-size: 400%;
+      animation: glowMove 8s linear infinite;
+      filter: blur(6px);
+      opacity: 0.7;
+    }
+
+    @keyframes glowMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .card:hover {
+      transform: translateY(-12px) scale(1.03);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
+
+    /* Floating delay difference */
+    .card:nth-child(2) {
+      animation-delay: 2.5s;
+    }
+
+    .card-img-top {
+      max-height: 120px; /* Smaller image height */
+      object-fit: contain;
+      margin-bottom: 20px; /* Space below image */
+    }
+
+    /* Buttons */
+    .btn-primary {
+      background: #007bff;
+      border: none;
+      border-radius: 25px;
+      padding: 10px 25px;
+      font-weight: 600;
+      transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 0 10px rgba(0,123,255,0.6);
+      text-align: center;
+      text-decoration: none;
+      color: white;
+      display: inline-block;
+    }
+
+    .btn-primary:hover {
+      background: #0056d2;
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(0,123,255,0.9);
+    }
+
+    /* Custom row for side by side */
+    .card-row {
+      display: flex;
+      justify-content: center;
+      gap: 20px; /* Space between cards */
+      flex-wrap: wrap; /* Wrap on very small screens if needed */
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding-top: 150px; /* More space on mobile */
+      }
+      .card-row {
+        flex-direction: column;
+        align-items: center;
+      }
+      .welcome-header h2 {
+        font-size: 2rem; /* Smaller on mobile */
+      }
+    }
+
+    a {
+      text-decoration: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="particles-js"></div>
+
+  <!-- Welcome Header -->
+  <div class="welcome-header">
+    <h2>Welcome to the Institution Portal</h2>
+  </div>
+
+  <div class="container">
+    <div class="card-row">
+      <!-- Student Card -->
+      <div class="card">
+        <img src="Images/login_student.jpg" style="background: transparent;" class="card-img-top img-fluid" alt="Student">
+        <a href="student login page.html" class="btn btn-primary">Student Login</a>
+      </div>
+
+      <!-- Faculty Card -->
+      <div class="card">
+        <img src="Images/login_faculty.jpg" class="card-img-top img-fluid" alt="Faculty">
+        <a href="faculty login page.html" class="btn btn-primary">Faculty Login</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="/Project/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    particlesJS("particles-js", {
+      "particles": {
+        "number": { "value": 70 },
+        "color": { "value": "#ffffff" },
+        "shape": { "type": "circle" },
+        "opacity": { "value": 0.5 },
+        "size": { "value": 3 },
+        "line_linked": {
+          "enable": true,
+          "distance": 150,
+          "color": "#ffffff",
+          "opacity": 0.3,
+          "width": 1
+        },
+        "move": {
+          "enable": true,
+          "speed": 2,
+          "direction": "none",
+          "out_mode": "out"
+        }
+      },
+      "interactivity": {
+        "detect_on": "canvas",
+        "events": { "onhover": { "enable": true, "mode": "grab" } },
+        "modes": { "grab": { "distance": 140, "line_linked": { "opacity": 0.5 } } }
+      },
+      "retina_detect": true
+    });
+  </script>
+</body>
+</html>

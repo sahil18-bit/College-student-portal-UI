@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EduPlus/Profile</title>
+  <link rel="stylesheet" href="sidebar.css">
+  <link rel="stylesheet" href="dashboard.css">
+  <link rel="stylesheet" href="loader.css">
+  <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+  <link rel="stylesheet" href="https://cdn.lineicons.com/5.0/lineicons.css" />
+  <style>
+    body {
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      min-height: 100vh;
+      margin: 0;
+    }
+    
+    .main {
+      margin-left: 70px;
+      transition: margin-left 0.235s ease-in-out;
+    }
+    #sidebar.expand ~ .main {
+      margin-left: 260px;
+    }
+    #sidebar.expand ~ nav#navbar {
+      margin-left: 260px;
+    }
+    @media (max-width: 768px) {
+      .main {
+        margin-left: 0;
+      }
+      #sidebar.expand ~ .main {
+        margin-left: 0;
+      }
+      #sidebar.expand ~ nav#navbar {
+        margin-left: 0;
+      }
+      #sidebar {
+        transform: translateX(-100%);
+      }
+      #sidebar.expand {
+        transform: translateX(0);
+      }
+    }
+    .card {
+      width: 100%;
+      height: 100%;
+      border-radius: 40px;
+      position: relative;
+      padding: 1.8rem;
+      border: 2px solid #e0e0e0;
+      transition: 0.5s ease-out;
+      overflow: visible;
+      min-height: 300px; /* Added min-height to make cards bigger vertically */
+    }
+    .card-details {
+      color: black;
+      height: 100%;
+      gap: 10px;
+      display: grid;
+      place-content: center;
+    }
+    .card-button {
+      text-align: center;
+      text-decoration: none;
+      position: absolute;
+      bottom: 20px;
+      font-size: 1rem;
+      left: 50%;
+      width: calc(100% - 3.6rem);
+      transform: translateX(-50%);
+      padding: .5rem 1rem;
+      border: none;
+      background-color: #0e223e;
+      color: white;
+      opacity: 0;
+      border-radius: 40px;
+      cursor: pointer;
+      transition: opacity 0.3s ease, background-color 0.3s ease;
+    }
+    .card:hover .card-button {
+      opacity: 1;
+    }
+    .card:hover {
+      border-color: #0e223e;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+    .profile-pic {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 1rem;
+    }
+    .profile-info {
+      text-align: center;
+    }
+    .profile-info h2 {
+      margin-bottom: 0.5rem;
+    }
+    .profile-info p {
+      margin: 0.25rem 0;
+    }
+  </style>
+</head>
+<body>
+  <!--Loader Start-->
+  <div class="loader-wrapper">
+    <span class="loader"><span class="loader-inner"></span></span>
+  </div>
+
+  <!--Navbar Start-->
+  <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top z-3" id="navbar" style="margin-left: 70px;">
+    <div class="container-fluid">
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="nav nav-tabs mx-auto" style="text-decoration: none;">
+          <li class="nav-item">
+            <a class="nav-link" href="faculty_dashboard.html" style="margin-left: 80px;">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="faculty_social.html" style="margin-left: 80px;">Social</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="faculty_notice.html" style="margin-left: 80px;">Notices</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#about" style="margin-left: 80px;">AI-Help</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-icon pe-md-0" href="login.html" style="margin-right: 30px;" data-bs-toggle="dropdown">
+              <img src="https://cdn-icons-png.flaticon.com/512/3135/3135768.png" class="avatar img-fluid" alt="User" width="44"/>
+            </a>
+            <div class="dropdown-menu dropdown-menu-end rounded-0 border-0 shadow mt-3">
+              <a class="dropdown-item active" href="#">My Profile</a>
+              <a class="dropdown-item" href="#">Settings</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Logout</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!--Navbar End-->
+
+  <!--Sidebar Start-->
+  <div class="wrapper">
+    <aside id="sidebar" class="fixed-top">
+      <!--logo-->
+      <div class="d-flex">
+        <button id="toggle-btn" type="button">
+          <i class="lni lni-layout-9"></i>
+        </button>
+        <div class="sidebar-logo">
+          <a href="#" class="logo"><span class="text-warning">Edu</span>Plus</a>
+        </div>
+      </div>
+
+      <!--list-->
+      <ul class="sidebar-nav">
+        <li class="sidebar-item">
+          <a href="faculty_dashboard.html" class="sidebar-link">
+            <i class="lni lni-dashboard-square-1"></i>
+            <span>Dashboard</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="faculty_assignment.html" class="sidebar-link">
+            <i class="lni lni-notebook-1"></i>
+            <span>Assignments</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="faculty_attendance.html" class="sidebar-link">
+            <i class="lni lni-calendar-days"></i>
+            <span>Attendance</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="faculty_studym.html" class="sidebar-link">
+            <i class="lni lni-books-2"></i>
+            <span>Study Materials</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="faculty_project.html" class="sidebar-link">
+            <i class="lni lni-gears-3"></i>
+            <span>Project</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="faculty_academic_progress.html" class="sidebar-link">
+            <i class="lni lni-bar-chart-4"></i>
+            <span>Academic Progress</span>
+          </a>
+        </li>
+
+      </ul>
+      <!--logout-->
+      <div class="sidebar-footer" style="margin-bottom: 20px;">
+        <a href="landing.html" class="sidebar-link logout">
+          <i class="lni lni-exit"></i>
+          <span>Logout</span>
+        </a>
+      </div>
+    </aside>
+    <!--Sidebar End-->
+
+    <!--Main start-->
+    <div class="main p-3">
+      <div class="container" style="margin-top: 90px;">
+        <div class="row g-3">
+
+          <!-- Profile Header Card -->
+          <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="card h-100" style="border-color: #0e223e; box-shadow: 0 10px 20px rgba(0,0,0,0.2);">
+              <div class="card-details profile-info">
+                <img src="https://cdn-icons-png.flaticon.com/512/3135/3135768.png" alt="Profile Picture" class="profile-pic">
+                <h1 style="font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; font-size: 3rem;">John Doe</h1>
+                <p><strong>Email:</strong> john.doe@example.com</p>
+                <p><strong>Student ID:</strong> 123456789</p>
+                <p><strong>Course:</strong> Computer Science</p>
+                <p><strong>Semester:</strong> 5th</p>
+              </div>
+              <a href="#" class="card-button">Edit Profile</a>
+            </div>
+          </div>
+
+          <!-- Personal Information Card -->
+          <div class="col-lg-6 col-md-6 col-sm-12">
+            <div class="card h-100">
+              <div class="card-details">
+                <h3>Personal Information</h3>
+                <p><strong>Full Name:</strong> John Doe</p>
+                <p><strong>Date of Birth:</strong> January 1, 2000</p>
+                <p><strong>Phone:</strong> +1 234 567 890</p>
+                <p><strong>Address:</strong> 123 Main St, City, Country</p>
+              </div>
+              <a href="#" class="card-button">Update Info</a>
+            </div>
+          </div>
+
+          <!-- Academic Information Card -->
+          <div class="col-lg-6 col-md-6 col-sm-12">
+            <div class="card h-100">
+              <div class="card-details">
+                <h3>Academic Information</h3>
+                <p><strong>Enrollment Year:</strong> 2018</p>
+                <p><strong>Current GPA:</strong> 3.8</p>
+                <p><strong>Major:</strong> Computer Science</p>
+                <p><strong>Advisor:</strong> Dr. Smith</p>
+              </div>
+              <a href="#" class="card-button">View Transcript</a>
+            </div>
+          </div>
+
+          <!-- Achievements Card -->
+          <div class="col-lg-6 col-md-6 col-sm-12">
+            <div class="card h-100">
+              <div class="card-details">
+                <h3>Achievements</h3>
+                <ul>
+                  <li>Dean's List - Fall 2022</li>
+                  <li>Hackathon Winner - 2023</li>
+                  <li>Volunteer of the Year - 2021</li>
+                </ul>
+              </div>
+              <a href="#" class="card-button">View All</a>
+            </div>
+          </div>
+
+          <!-- Settings Card -->
+          <div class="col-lg-6 col-md-6 col-sm-12">
+            <div class="card h-100">
+              <div class="card-details">
+                <h3>Account Settings</h3>
+                <p>Manage your account preferences, privacy settings, and notifications.</p>
+              </div>
+              <a href="#" class="card-button">Go to Settings</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <!--Main end-->
+  </div>
+
+  <script src="sidebar.js"></script>
+  <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="jquery-3.7.1.js"></script>
+
+  <script>
+    $(window).on("load", function(){
+      $(".loader-wrapper").fadeOut("slow");
+    });
+  </script>
+</body>
+</html>

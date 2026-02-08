@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="sidebar.css">
+  <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+  <link rel="stylesheet" href="loader.css">
+  <link rel="stylesheet" href="https://cdn.lineicons.com/5.0/lineicons.css" />
+  <style>
+      body {
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      min-height: 100vh;
+      margin: 0;
+    }
+    .main {
+      margin-left: 40px;
+      transition: margin-left 0.235s ease-in-out;
+      margin-top: 80px; /* Adjust for fixed navbar */
+    }
+    #sidebar.expand ~ .main {
+      margin-left: 260px;
+    }
+    .card {
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+      margin-bottom: 20px;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+    }
+    .notice-date {
+      font-size: 0.9em;
+      color: #666;
+    }
+    .notice-title {
+      font-weight: bold;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+    
+  <!--Loader Start-->
+  
+  <div class="loader-wrapper">
+  <span class="loader"><span class="loader-inner"></span></span>
+  </div>
+
+  <!-- Navbar Start -->
+  <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top z-3" id="navbar" style="margin-left: 70px;">
+    <div class="container-fluid">
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="nav nav-tabs mx-auto" style="text-decoration: none;">
+          <li class="nav-item">
+            <a class="nav-link" href="dashboard.html" style="margin-left: 80px;">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="social.html" style="margin-left: 80px;">Social</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="#" style="margin-left: 80px;">Notices</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#about" style="margin-left: 80px;">AI-Help</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-icon pe-md-0" href="login.html" style="margin-right: 30px;" data-bs-toggle="dropdown">
+              <img src="https://cdn-icons-png.flaticon.com/512/3135/3135768.png" alt="User" width="44"/>
+            </a>
+              <div class="dropdown-menu dropdown-menu-end rounded-0 border-0 shadow mt-3">
+              <a class="dropdown-item" href="profile.html">My Profile</a>
+              <a class="dropdown-item" href="#">Settings</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="landing.html">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- Navbar End -->
+
+  <!-- Sidebar Start -->
+  <div class="wrapper">
+    <aside id="sidebar">
+      <!-- Logo -->
+      <div class="d-flex">
+        <button id="toggle-btn" type="button">
+          <i class="lni lni-layout-9"></i>
+        </button>
+        <div class="sidebar-logo">
+          <a href="#" class="logo"><span class="text-warning">Edu</span>Plus</a>
+        </div>
+      </div>
+
+      <!-- List -->
+      <ul class="sidebar-nav">
+        <li class="sidebar-item">
+          <a href="dashboard.html" class="sidebar-link">
+            <i class="lni lni-dashboard-square-1"></i>
+            <span>Dashboard</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="assignment.html" class="sidebar-link">
+            <i class="lni lni-notebook-1"></i>
+            <span>Assignments</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="attendance.html" class="sidebar-link">
+            <i class="lni lni-calendar-days"></i>
+            <span>Attendance</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="studym.html" class="sidebar-link">
+            <i class="lni lni-books-2"></i>
+            <span>Study Materials</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="project.html" class="sidebar-link">
+            <i class="lni lni-gears-3"></i>
+            <span>Project</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="academic_progress.html" class="sidebar-link">
+            <i class="lni lni-bar-chart-4"></i>
+            <span>Academic Progress</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="skilldev.html" class="sidebar-link">
+            <i class="lni lni-laravel"></i>
+            <span>Skill Development</span>
+          </a>
+        </li>
+      </ul>
+
+      <!-- Logout -->
+      <div class="sidebar-footer" style="margin-bottom: 20px;">
+        <a href="landing.html" class="sidebar-link logout">
+          <i class="lni lni-exit"></i>
+          <span>Logout</span>
+        </a>
+      </div>
+    </aside>
+    <!-- Sidebar End -->
+
+    <!-- Main Start -->
+    <div class="main p-5">
+      <div id="noticeSection">
+        <h3 class="mb-4">📢 Latest Notices</h3>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="card p-3">
+              <div class="card-body">
+                <h5 class="card-title notice-title">📅 Semester Exam Schedule</h5>
+                <p class="card-text notice-date">Posted on: October 15, 2023</p>
+                <p class="card-text">The final semester exams will begin on November 1st. Please check the detailed schedule on the portal.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card p-3">
+              <div class="card-body">
+                <h5 class="card-title notice-title">🏆 Scholarship Opportunities</h5>
+                <p class="card-text notice-date">Posted on: October 10, 2023</p>
+                <p class="card-text">Applications for merit-based scholarships are now open. Deadline: October 31st.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card p-3">
+              <div class="card-body">
+                <h5 class="card-title notice-title">🎓 Graduation Ceremony</h5>
+                <p class="card-text notice-date">Posted on: October 5, 2023</p>
+                <p class="card-text">The annual graduation ceremony is scheduled for December 15th at the main auditorium.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card p-3">
+              <div class="card-body">
+                <h5 class="card-title notice-title">📚 Library Hours Update</h5>
+                <p class="card-text notice-date">Posted on: September 28, 2023</p>
+                <p class="card-text">Due to maintenance, the library will be closed on October 20th. Extended hours on weekends.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Main End -->
+
+    <script src="sidebar.js"></script>
+    <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="jquery-3.7.1.js"></script>
+    
+    <script>
+    $(window).on("load",function(){
+        $(".loader-wrapper").fadeOut("slow");
+    });
+    </script>
+</body>
+</html>

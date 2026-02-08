@@ -1,0 +1,256 @@
+
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Assignment</title>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="sidebar.css">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdn.lineicons.com/5.0/lineicons.css" />
+    <style>
+      .main{
+      margin-left: 50vh; /* Matches default sidebar width */
+      transition: margin-left 0.235s ease-in-out; /* Smooth transition */
+      }
+    </style>
+</head>
+<body>
+
+  <!--Navbar Start-->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top z-3"  id="navbar" style="margin-left: 70px;">
+    <div class="container-fluid">
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="nav nav-tabs mx-auto" style="text-decoration: none;">
+
+
+          <li class="nav-item">
+            <a class="nav-link active" href="#" style="margin-left: 80px;">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="faculty_social.html" style="margin-left: 80px;">Social</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="faculty_notice.html" style="margin-left: 80px;">Notices</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" style="margin-left: 80px;">AI-Help</a>
+          </li>
+      
+        </ul>
+        <ul class="navbar-nav ms-auto">
+
+          <li class="nav-item">
+            <a class="nav-icon pe-md-O" href="login.html" style="margin-right: 30px;" data-bs-toggle="dropdown">
+              <div class="container">
+              <img src="https://cdn-icons-png.flaticon.com/512/3135/3135768.png" alt="User" width="44"/>
+              </div>
+            </a>
+              <div class="dropdown-menu dropdown-menu-end rounded-0 border-0 shadow mt-3">
+              <a class="dropdown-item" href="faculty_profile.html">My Profile</a>
+              <a class="dropdown-item" href="#">Settings</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="landing.html">Logout</a>
+            </div>
+      
+        </ul>
+
+      </div>
+    </div>
+  </nav>
+
+
+  <!--Navbar End-->
+
+
+
+  <!--Sidebar Start-->
+  <div class="wrapper">
+    <aside id="sidebar" class="fixed-top">
+      <!--logo-->
+      <div class="d-flex">
+        <button id="toggle-btn" type="button">
+          <i class="lni lni-layout-9"></i>
+        </button>
+        <div class="sidebar-logo">
+          <a href="#" class="logo"><span class="text-warning">Edu</span>Plus</a>
+        </div>
+      </div>
+
+      <!--list-->
+      <ul class="sidebar-nav">
+
+
+        <li class="sidebar-item">
+          <a href="faculty_dashboard.html" class="sidebar-link ">
+            <i class="lni lni-dashboard-square-1"></i>
+            <span>Dashboard</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="faculty_assignment.html" class="sidebar-link">
+            <i class="lni lni-notebook-1"></i>
+            <span>Assignments</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="faculty_attendance.html" class="sidebar-link">
+              <i class="lni lni-calendar-days"></i>
+            <span>Attendance</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="#" class="sidebar-link active">
+            <i class="lni lni-books-2"></i>
+            <span>Study Materials</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="faculty_project.html" class="sidebar-link">
+            <i class="lni lni-gears-3"></i>
+            <span>Project</span>
+          </a>
+        </li>
+                <li class="sidebar-item">
+          <a href="faculty_academic_progress.html" class="sidebar-link">
+            <i class="lni lni-bar-chart-4"></i>
+            <span>Academic Progress</span>
+          </a>
+        </li>
+      </ul>
+      <!--logout-->
+      <div class="sidebar-footer"  style="margin-bottom: 20px;">
+          <a href="landing.html" class="sidebar-link logout">
+            <i class="lni lni-exit"></i>
+            <span>Logout</span>
+          </a>
+      </div>
+    </aside>
+    <!--Sidebar End-->
+
+
+    <!--Main  start-->
+    <div class="main p-3">
+  <body>
+
+  <section class="materials-section p-4" style="display: block;">
+    <h3>📘 Study Materials</h3>
+    <p>Select the course you want to upload study materials for:</p>
+
+    <!-- Course Cards -->
+    <div class="card mb-3">
+      <h5 class="card-header">BTI Sem-V</h5>
+      <div class="card-body">
+        <h5 class="card-title">Data Structure and Algorithm</h5>
+        <button class="btn btn-primary uploadBtn" data-course="BTI Sem-V - DSA">Upload Materials</button>
+        <div class="uploadedFiles mt-3"></div>
+      </div>
+    </div>
+
+    <div class="card mb-3">
+      <h5 class="card-header">BTech Sem-III</h5>
+      <div class="card-body">
+        <h5 class="card-title">Computer Networks</h5>
+        <button class="btn btn-primary uploadBtn" data-course="BTech Sem-III - CN">Upload Materials</button>
+        <div class="uploadedFiles mt-3"></div>
+      </div>
+    </div>
+
+    <div class="card mb-3">
+      <h5 class="card-header">MTech Sem-II</h5>
+      <div class="card-body">
+        <h5 class="card-title">Microprocessor Systems and Interfacing</h5>
+        <button class="btn btn-primary uploadBtn" data-course="MTech Sem-II - MSI">Upload Materials</button>
+        <div class="uploadedFiles mt-3"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Upload Modules -->
+  <div class="modal fade" id="uploadModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Upload Study Material</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <p id="courseName" class="fw-semibold text-primary mb-2"></p>
+          <label class="form-label fw-bold">Select File(s)</label>
+          <input type="file" id="materialFile" class="form-control mb-3" accept=".pdf,.ppt,.pptx,.docx,.zip" multiple>
+          <label class="form-label fw-bold">Description (optional)</label>
+          <textarea id="materialDesc" class="form-control mb-3" rows="2" placeholder="E.g. Module 1 PPT"></textarea>
+          <button class="btn btn-success w-100" id="uploadBtnConfirm">Upload</button>
+          <div id="uploadMsg" class="mt-3 text-success fw-semibold" style="display:none;">✅ File uploaded successfully!</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="/Project/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="studym.js"></script>
+    
+
+</body>
+ 
+  </div>
+  <!--Main end-->
+
+<script src="/Project/jquery-3.7.1.js"></script>
+    <script src="sidebar.js"></script>
+    <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+  
+    <script>
+      let currentCourseDiv = null;
+
+      // When Upload button clicked, open modal
+      $(".uploadBtn").on("click", function() {
+        const courseName = $(this).data("course");
+        $("#courseName").text(courseName);
+        currentCourseDiv = $(this).siblings(".uploadedFiles");
+        $("#materialFile").val("");
+        $("#materialDesc").val("");
+        $("#uploadMsg").hide();
+        $("#uploadModal").modal("show");
+      });
+
+      // When Upload in modal clicked
+      $("#uploadBtnConfirm").on("click", function() {
+        const files = $("#materialFile")[0].files;
+        const desc = $("#materialDesc").val().trim();
+
+        if (files.length === 0) {
+          alert("Please select at least one file to upload.");
+          return;
+        }
+
+        $.each(files, function(_, file) {
+          const fileUrl = URL.createObjectURL(file);
+          const fileName = file.name;
+          const fileType = fileName.split(".").pop().toLowerCase();
+
+          let icon = "📘";
+          if (["ppt", "pptx"].includes(fileType)) icon = "📊";
+          else if (["docx"].includes(fileType)) icon = "📝";
+          else if (["zip"].includes(fileType)) icon = "🗜️";
+          else if (["pdf"].includes(fileType)) icon = "📕";
+
+          const fileCard = `
+            <div class="border p-2 rounded mb-2 bg-light">
+              <a href="${fileUrl}" target="_blank" class="text-decoration-none">${icon} ${fileName}</a>
+              ${desc ? `<p class="mb-0 small text-muted">${desc}</p>` : ""}
+            </div>
+          `;
+
+          currentCourseDiv.append(fileCard);
+        });
+
+        $("#uploadMsg").fadeIn(200).delay(1500).fadeOut(400);
+        setTimeout(() => $("#uploadModal").modal("hide"), 2000);
+      });
+    </script>
+</body>
+</html>

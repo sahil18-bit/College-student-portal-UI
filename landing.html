@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Page</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+    <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <style>
+        /* General Reset and Box Sizing */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Navbar Styles */
+.navbar {
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+}
+
+.navbar-brand {
+  font-weight: 700;
+  font-size: 2rem;
+  color: #333;
+}
+
+.navbar-brand .text-warning {
+  color: #ffc107 !important;
+}
+
+.nav-link {
+  color: #333 !important;
+  font-weight: 500;
+  font-size: 1rem;
+  transition: color 0.2s;
+}
+
+.nav-link.active,
+.nav-link:hover,
+.nav-link:focus {
+  color: #ffc107 !important;
+}
+
+@media (max-width: 991.98px) {
+  .navbar-brand {
+    margin-left: 10px;
+    font-size: 1.5rem;
+  }
+  .navbar {
+    padding: 0.3rem 0.5rem;
+  }
+  .nav-tabs {
+    flex-direction: column;
+    width: 100%;
+  }
+  .nav-item {
+    margin-bottom: 0.5rem;
+  }
+}
+
+/* Carousel Styles */
+.carousel {
+  margin-top: 70px;
+}
+
+.carousel-item img {
+  height: 100vh;
+  object-fit: cover;
+}
+
+.carousel-caption {
+  background: rgba(0,0,0,0.21);
+  padding: 1.5rem 2rem;
+  border-radius: 10px;
+}
+
+.carousel-caption h5,
+.carousel-caption p {
+  color: #fff;
+  text-shadow: 1px 1px 5px rgba(0,0,0,0.7);
+}
+
+.btn-warning {
+  background-color: #ffc107 !important;
+  border: none;
+  font-weight: bold;
+}
+
+@media (max-width: 767.98px) {
+  .carousel-caption {
+    padding: 1rem;
+    font-size: 0.9rem;
+  }
+  .carousel-item img {
+    height: 30vh;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .carousel-caption {
+    position: static;
+    background: #222;
+    margin-top: 0.5rem;
+    border-radius: 0;
+  }
+  .carousel-item img {
+    height: 170px;
+  }
+  .navbar-brand {
+    font-size: 1.2rem;
+  }
+}
+
+/* Extra Utilities */
+.mt3 {
+  margin-top: 1.5rem !important;
+}
+
+
+
+
+
+    </style>
+
+</head>
+<body>
+
+
+<!-- Horizontal Navbar Start-->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
+    <div class="container-fluid">
+
+      <a class="navbar-brand" href="#" style="margin-left: 30px;"><span class="text-warning">Edu</span>Plus</a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mx-auto">
+
+
+          <li class="nav-item">
+            <a class="nav-link" href="#" style="margin-left: 30px;">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#docs" style="margin-left: 30px;">Docs</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#about" style="margin-left: 30px;">About Us</a>
+          </li>
+      
+        </ul>
+        <ul class="navbar-nav ms-auto">
+
+          <li class="nav-item">
+            <a class="nav-link" href="login.html" style="margin-right: 30px;">Login</a>
+      
+        </ul>
+
+      </div>
+    </div>
+  </nav>
+
+<!-- Horizontal Navbar End-->
+
+<!-- carousel Start-->
+
+<div id="carouselExampleCaptions" class="carousel slide">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="Images/student2.jpg" class="d-block w-100" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>First slide label</h5>
+        <p>Some representative placeholder content for the first slide.</p>
+        <p><a href="login.html" class="btn btn-warning mt3">Login In Now</a></p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="Images/student1.jpg" class="d-block w-100" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Second slide label</h5>
+        <p>Some representative placeholder content for the second slide.</p>
+        <p><a href="login.html" class="btn btn-warning mt3">Login In Now</a></p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="Images/student3.jpg" class="d-block w-100" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Third slide label</h5>
+        <p>Some representative placeholder content for the third slide.</p>
+        <p><a href="login.html" class="btn btn-warning mt3">Login In Now</a></p>
+      </div>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+<!-- carousel End-->
+
+<!-- Docs Start-->
+
+<section id="docs" class="about section-padding" style="margin-top: 40px; margin-bottom: 80px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-12 col-12">
+                <div class="about-img">
+                    <img src="Images/document.jpg" alt="" class="img-fluid" width="400px" style="margin-top: 50px;">
+                </div>
+            </div>
+            <div class="col-lg-8 col-md-12 col-12 ps-lg-5 mt-md-5">
+                <div class="about-text">
+                    <h2>About Our Documentation</h2>
+                    <p class="mt-3"><strong>Student Dashboard:</strong>
+<ul>
+<li>Home: Main dashboard, quick overview</li>
+<li>Progress: Track academic performance</li>
+<li>Notices / Events: Updates and upcoming activities</li>
+<li>Clubs: Explore and join student groups</li>
+<li>Assignments: View, submit homework</li>
+<li>Study Resources: Access notes/books</li>
+<li>Achievements: Awards, milestones</li>
+<li>Statistics / Portfolio: Academic summary/profile</li>
+<li>Internships / Placements / Universities: Career & college options</li>
+<li>Skill Development: Learn new skills/courses</li>
+<li>Projects: Display or share student work</li>
+<li>Social: Connect and chat with peers</li>
+<li>Chatbot: Instant help and FAQs</li>
+</ul>
+</p>
+                    <a href="login.html" class="btn btn-warning mt-3">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Docs End-->
+
+<!-- About us Start-->
+
+<section id="about" class="about section-padding" style="margin-top: 30px; margin-bottom: 80px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-12 col-12 ps-lg-5 mt-md-5">
+                <div class="about-text">
+                    <h2>Our Mission</h2>
+                    <p class="mt-3">Our mission is to revolutionize education by providing a unified digital
+                         platform that empowers students and teachers to connect, collaborate, and grow. We aim
+                          to make learning engaging and accessible, support holistic development, and bridge 
+                          academics with real-world opportunities. By integrating academics, career guidance, 
+                          social networking, and skill-building in a seamless experience, we prepare every learner
+                           and educator for success in a changing world.</p>
+                    <a href="login.html" class="btn btn-warning mt-3">Learn More</a>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-12 col-12">
+                <div class="about-img">
+                    <img src="Images/mission.jpg" alt="" class="img-fluid" width="400px" style="margin-top: 60px;">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- About us End-->
+
+
+</body>
+</html>

@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EduPlus/Dashboard</title>
+  <link rel="stylesheet" href="sidebar.css">
+  <link rel="stylesheet" href="dashboard.css">
+  <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+  <link rel="stylesheet" href="https://cdn.lineicons.com/5.0/lineicons.css" />
+  <style>
+    body {
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      min-height: 100vh;
+      margin: 0;
+    }
+    
+    .main {
+      margin-left: 150px;
+      margin-top: 100px;
+      transition: margin-left 0.235s ease-in-out;
+    }
+    #sidebar.expand ~ .main {
+      margin-left: 260px;
+    }
+    #sidebar.expand ~ nav#navbar {
+      margin-left: 260px;
+    }
+    @media (max-width: 768px) {
+      .main {
+        margin-left: 0;
+      }
+      #sidebar.expand ~ .main {
+        margin-left: 0;
+      }
+      #sidebar.expand ~ nav#navbar {
+        margin-left: 0;
+      }
+      #sidebar {
+        transform: translateX(-100%);
+      }
+      #sidebar.expand {
+        transform: translateX(0);
+      }
+    }
+    .card {
+      width: 100%;
+      height: 100%;
+      border-radius: 40px;
+      position: relative;
+      padding: 1.8rem;
+      border: 2px solid #e0e0e0;
+      transition: 0.5s ease-out;
+      overflow: visible;
+      min-height: 300px; /* Added min-height to make cards bigger vertically */
+    }
+    .card-details {
+      color: black;
+      height: 100%;
+      gap: 10px;
+      display: grid;
+      place-content: center;
+    }
+    .card-button {
+      text-align: center;
+      text-decoration: none;
+      position: absolute;
+      bottom: 20px;
+      font-size: 1rem;
+      left: 50%;
+      width: calc(100% - 3.6rem);
+      transform: translateX(-50%);
+      padding: .5rem 1rem;
+      border: none;
+      background-color: #0e223e;
+      color: white;
+      opacity: 0;
+      border-radius: 40px;
+      cursor: pointer;
+      transition: opacity 0.3s ease, background-color 0.3s ease;
+    }
+    .card:hover .card-button {
+      opacity: 1;
+    }
+    .card:hover {
+      border-color: #0e223e;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+    .table-responsive {
+      max-height: 400px;
+      overflow-y: auto;
+    }
+        .blur-card, .report-card {
+      background: rgba(255, 255, 255, 0.65);
+      border-radius: 16px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 2rem;
+      width: 100%;
+      max-width: 400px;
+      color: #000;
+      text-align: center;
+    }
+
+    .blur-card input {
+      background: rgba(255, 255, 255, 0.85);
+      border: 1px solid rgba(0,0,0,0.1);
+      color: #000;
+    }
+
+    .blur-card input::placeholder {
+      color: rgba(0, 0, 0, 0.6);
+    }
+
+    .blur-card .btn {
+      background-color: rgba(0, 123, 255, 0.8);
+      border: none;
+      color: white;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .blur-card .btn:hover {
+      background-color: rgba(0, 123, 255, 1);
+      transform: scale(1.03);
+    }
+
+    .report-card {
+      display: none; /* Hidden initially */
+    }
+
+    .backBtn {
+      background: rgba(0, 123, 255, 0.8);
+      border: none;
+      color: #fff;
+      padding: 6px 15px;
+      border-radius: 8px;
+      margin-top: 10px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .backBtn:hover {
+      background: rgba(0, 123, 255, 1);
+    }
+  </style>
+</head>
+<body>
+  <!--Navbar Start-->
+  <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top z-3" id="navbar" style="margin-left: 70px;">
+    <div class="container-fluid">
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="nav nav-tabs mx-auto" style="text-decoration: none;">
+          <li class="nav-item">
+            <a class="nav-link active" href="#" style="margin-left: 80px;">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="faculty_social.html" style="margin-left: 80px;">Social</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="faculty_notice.html" style="margin-left: 80px;">Notices</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#about" style="margin-left: 80px;">AI-Help</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-icon pe-md-0" href="login.html" style="margin-right: 30px;" data-bs-toggle="dropdown">
+              <img src="https://cdn-icons-png.flaticon.com/512/3135/3135768.png" class="avatar img-fluid" alt="User" width="44"/>
+            </a>
+            <div class="dropdown-menu dropdown-menu-end rounded-0 border-0 shadow mt-3">
+              <a class="dropdown-item" href="faculty_profile.html">My Profile</a>
+              <a class="dropdown-item" href="#">Settings</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="landing.html">Logout</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!--Navbar End-->
+
+  <!--Sidebar Start-->
+  <div class="wrapper">
+    <aside id="sidebar" class="fixed-top">
+      <!--logo-->
+      <div class="d-flex">
+        <button id="toggle-btn" type="button">
+          <i class="lni lni-layout-9"></i>
+        </button>
+        <div class="sidebar-logo">
+          <a href="#" class="logo"><span class="text-warning">Edu</span>Plus</a>
+        </div>
+      </div>
+
+      <!--list-->
+      <ul class="sidebar-nav">
+        <li class="sidebar-item">
+          <a href="faculty_dashboard.html" class="sidebar-link">
+            <i class="lni lni-dashboard-square-1"></i>
+            <span>Dashboard</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="faculty_assignment.html" class="sidebar-link">
+            <i class="lni lni-notebook-1"></i>
+            <span>Assignments</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="faculty_attendance.html" class="sidebar-link">
+            <i class="lni lni-calendar-days"></i>
+            <span>Attendance</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="faculty_studym.html" class="sidebar-link">
+            <i class="lni lni-books-2"></i>
+            <span>Study Materials</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="faculty_project.html" class="sidebar-link">
+            <i class="lni lni-gears-3"></i>
+            <span>Project</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="#" class="sidebar-link active">
+            <i class="lni lni-bar-chart-4"></i>
+            <span>Academic Progress</span>
+          </a>
+        </li>
+      </ul>
+      <!--logout-->
+      <div class="sidebar-footer" style="margin-bottom: 20px;">
+        <a href="landing.html" class="sidebar-link logout">
+          <i class="lni lni-exit"></i>
+          <span>Logout</span>
+        </a>
+      </div>
+    </aside>
+    <!--Sidebar End-->
+
+    <!--Main start-->
+   <div class="main p-3">
+
+     <!-- Input Card -->
+  <!-- Input card -->
+<div class="blur-card" id="inputCard">
+  <h3 class="mb-3">📊 Academic Progress</h3>
+  <input type="text" id="sapId" class="form-control mb-3" placeholder="Enter SAP ID (e.g. 60004210023)">
+  <button class="btn w-100" id="checkBtn">View Progress</button>
+</div>
+
+<!-- Report section (hidden by default) -->
+<div id="progressReport" style="display: none;">
+  <!-- Student Info -->
+  <div class="card mb-3">
+    <div class="card-details">
+      <h4>Student Details</h4>
+      <p><strong>Name:</strong> <span id="name"></span></p>
+      <p><strong>Course:</strong> <span id="course"></span></p>
+      <p><strong>Semester:</strong> <span id="sem"></span></p>
+    </div>
+  </div>
+
+  <!-- Chart 1 -->
+  <div class="col-lg-12 col-md-6 col-sm-12">
+    <div class="card h-100">
+      <div class="card-details">
+        <canvas id="myChart1"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- Chart 2 -->
+  <div class="col-lg-12 col-md-6 col-sm-12">
+    <div class="card h-100">
+      <div class="card-details">
+        <canvas id="myChart2"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- Detailed Table -->
+  <div class="col-lg-12 col-md-6 col-sm-12">
+    <div class="card h-100">
+      <div class="card-details">
+        <h4>📈 Detailed Academic Progress</h4>
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Subject</th>
+                <th>M1 (out of 10)</th>
+                <th>M2 (out of 10)</th>
+                <th>TEE (out of 100)</th>
+                <th>Final Percentage (%)</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Download Report -->
+  <div class="col-lg-12 col-md-6 col-sm-12">
+    <div class="card h-100">
+      <div class="card-details">
+        <h4>📊 Detailed Academic Progress Report</h4>
+        <p>Download a comprehensive report of your academic progress including marks and percentages.</p>
+        <a href="academic_progress_report.pdf" download class="btn btn-primary">Download Report</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Back button (only shown here) -->
+  <button class="backBtn" id="backBtn">← Back</button>
+</div>
+  </div>
+    </div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="jquery-3.7.1.js"></script>
+    <script src="sidebar.js"></script>
+    <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script>
+ // Expanded data: Now includes marks for each student (subjects are assumed the same for all)
+const progressData = {
+  "60004210023": {
+    name: "Maitri Desai",
+    course: "Data Science",
+    sem: "V",
+    subjects: ['Calculus', 'MAE', 'PPS', 'BDS', 'FWD', 'CT', 'Biology', 'ES'],
+    m1: [8.5, 7.5, 9.0, 8.0, 9.5, 8.5, 7.0, 8.5],
+    m2: [9.0, 8.0, 8.5, 8.5, 9.0, 8.0, 7.5, 9.0],
+    tee: [85, 78, 90, 82, 92, 88, 75, 87],
+    finalPercent: [88.5, 81.0, 91.5, 84.5, 93.5, 89.5, 77.5, 89.5]
+  },
+  "60004210019": {
+    name: "Jainam Kothari",
+    course: "Computer Engineering",
+    sem: "III",
+    subjects: ['Calculus', 'MAE', 'PPS', 'BDS', 'FWD', 'CT', 'Biology', 'ES'],
+    m1: [7.0, 8.0, 8.5, 9.0, 8.0, 9.0, 8.5, 7.5],
+    m2: [8.5, 7.5, 9.0, 8.5, 9.5, 8.5, 7.0, 8.0],
+    tee: [80, 82, 88, 85, 90, 86, 78, 84],
+    finalPercent: [85.0, 83.5, 90.5, 87.5, 92.0, 88.0, 79.5, 85.5]
+  },
+  "60004210039": {
+    name: "Sahil Shigwan",
+    course: "AI & ML",
+    sem: "VI",
+    subjects: ['Calculus', 'MAE', 'PPS', 'BDS', 'FWD', 'CT', 'Biology', 'ES'],
+    m1: [9.0, 8.5, 9.5, 8.5, 9.0, 8.0, 7.5, 9.0],
+    m2: [8.0, 9.0, 8.5, 9.0, 8.5, 9.5, 8.0, 8.5],
+    tee: [88, 85, 92, 86, 89, 91, 80, 88],
+    finalPercent: [89.5, 87.0, 93.0, 88.0, 90.5, 92.5, 81.5, 89.0]
+  }
+};
+
+// Global chart variables
+let chart1, chart2;
+
+// On "View Progress" click
+$("#checkBtn").on("click", function() {
+  const sap = $("#sapId").val().trim();
+
+  if (sap === "") {
+    alert("Please enter a SAP ID.");
+    return;
+  }
+
+  const data = progressData[sap];
+  if (!data) {
+    alert("No record found for SAP ID: " + sap);
+    return;
+  }
+
+  // Fill student info
+  $("#name").text(data.name);
+  $("#course").text(data.course);
+  $("#sem").text(data.sem);
+
+  // Hide input card, show progress report
+  $("#inputCard").hide();
+  $("#progressReport").fadeIn(300);
+
+  // Destroy existing charts if they exist
+  if (chart1) chart1.destroy();
+  if (chart2) chart2.destroy();
+
+  // Chart 1
+  const ctx1 = document.getElementById('myChart1');
+  chart1 = new Chart(ctx1, {
+    type: 'bar',
+    data: {
+      labels: data.subjects,
+      datasets: [
+        { label: 'M1 (out of 10)', data: data.m1, backgroundColor: 'rgba(54, 162, 235, 0.6)' },
+        { label: 'M2 (out of 10)', data: data.m2, backgroundColor: 'rgba(255, 99, 132, 0.6)' },
+        { label: 'TEE (out of 100)', data: data.tee, backgroundColor: 'rgba(75, 192, 192, 0.6)' }
+      ]
+    },
+    options: { scales: { y: { beginAtZero: true } } }
+  });
+
+  // Chart 2
+  const ctx2 = document.getElementById('myChart2');
+  chart2 = new Chart(ctx2, {
+    type: 'line',
+    data: {
+      labels: data.subjects,
+      datasets: [{ label: 'Final Percentage (%)', data: data.finalPercent, borderColor: 'rgba(153, 102, 255, 1)', tension: 0.1 }]
+    },
+    options: { scales: { y: { beginAtZero: true } } }
+  });
+
+  // Table
+  const tableBody = $('.table tbody');
+  tableBody.empty();
+  for (let i = 0; i < data.subjects.length; i++) {
+    tableBody.append(`
+      <tr>
+        <td>${data.subjects[i]}</td>
+        <td>${data.m1[i]}</td>
+        <td>${data.m2[i]}</td>
+        <td>${data.tee[i]}</td>
+        <td>${data.finalPercent[i]}</td>
+      </tr>
+    `);
+  }
+});
+
+// Back button
+$("#backBtn").on("click", function() {
+  $("#progressReport").fadeOut(300, function() {
+    $("#inputCard").fadeIn(300);
+  });
+  if (chart1) chart1.destroy();
+  if (chart2) chart2.destroy();
+});
+
+</script>
+</body>
+</html>

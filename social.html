@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EduPlus/social</title>
+  <link rel="stylesheet" href="sidebar.css">
+  <link rel="stylesheet" href="dashboard.css">
+  <link rel="stylesheet" href="loader.css">
+  <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+  <link rel="stylesheet" href="https://cdn.lineicons.com/5.0/lineicons.css" />
+  <style>
+    /* Custom styles for the social feed */
+    body {
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      min-height: 100vh;
+      margin: 0;
+    } 
+    
+    .post-card {
+      margin-bottom: 20px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 15px;
+      background: #fff;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      transition: box-shadow 0.3s ease;
+    }
+    .post-card:hover {
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    }
+    .post-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .post-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+    .post-image {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      margin-top: 10px;
+      border: 1px solid #eee;
+    }
+    .post-actions {
+      margin-top: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .post-actions button {
+      margin-right: 10px;
+      border: none;
+      background: transparent;
+      color: #007bff;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      padding: 5px 10px;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+    .post-actions button:hover {
+      background-color: #f0f8ff;
+    }
+    .post-actions button.liked {
+      color: #dc3545;
+    }
+    .like-count, .comment-count {
+      margin-left: 5px;
+      font-size: 0.9em;
+    }
+    .comments-section {
+      margin-top: 15px;
+      display: none;
+    }
+    .comment {
+      margin-bottom: 10px;
+      padding: 10px;
+      background: #f8f9fa;
+      border-radius: 5px;
+    }
+    .comment-form {
+      margin-top: 10px;
+    }
+    .create-post {
+      margin-bottom: 30px;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background: #f8f9fa;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .feed {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    /* Adjustments for sidebar and main content */
+    .main {
+      margin-left: 50vh; /* Matches default sidebar width */
+      transition: margin-left 0.235s ease-in-out; /* Smooth transition */
+    }
+    #sidebar.expand ~ .main {
+      margin-left: 260px; /* Matches expanded sidebar width */
+    }
+  </style>
+</head>
+<body>
+      
+  <!--Loader Start-->
+  
+  <div class="loader-wrapper">
+  <span class="loader"><span class="loader-inner"></span></span>
+  </div>
+
+  <!-- Navbar Start -->
+  <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top z-3" id="navbar" style="margin-left: 70px;">
+    <div class="container-fluid">
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="nav nav-tabs mx-auto" style="text-decoration: none;">
+          <li class="nav-item">
+            <a class="nav-link" href="dashboard.html" style="margin-left: 80px;">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="social.html" style="margin-left: 80px;">Social</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="notice.html" style="margin-left: 80px;">Notices</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#ai-help" style="margin-left: 80px;">AI-Help</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-icon pe-md-0" href="login.html" style="margin-right: 30px;" data-bs-toggle="dropdown">
+              <img src="https://cdn-icons-png.flaticon.com/512/3135/3135768.png" class="avatar img-fluid" alt="User" width="44"/>
+            </a>
+            <div class="dropdown-menu dropdown-menu-end rounded-0 border-0 shadow mt-3">
+              <a class="dropdown-item" href="profile.html">My Profile</a>
+              <a class="dropdown-item" href="#">Settings</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="landing.html">Logout</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- Navbar End -->
+
+  <!-- Sidebar Start -->
+  <div class="wrapper">
+    <aside id="sidebar" class="fixed-top">
+      <!-- Logo -->
+      <div class="d-flex">
+        <button id="toggle-btn" type="button">
+          <i class="lni lni-layout-9"></i>
+        </button>
+        <div class="sidebar-logo">
+          <a href="#" class="logo"><span class="text-warning">Edu</span>Plus</a>
+        </div>
+      </div>
+
+      <!-- List -->
+      <ul class="sidebar-nav">
+        <li class="sidebar-item">
+          <a href="dashboard.html" class="sidebar-link">
+            <i class="lni lni-dashboard-square-1"></i>
+            <span>Dashboard</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="assignment.html" class="sidebar-link">
+            <i class="lni lni-notebook-1"></i>
+            <span>Assignments</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="attendance.html" class="sidebar-link">
+            <i class="lni lni-calendar-days"></i>
+            <span>Attendance</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="studym.html" class="sidebar-link">
+            <i class="lni lni-books-2"></i>
+            <span>Study Materials</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="project.html" class="sidebar-link">
+            <i class="lni lni-gears-3"></i>
+            <span>Project</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="academic_progress.html" class="sidebar-link">
+            <i class="lni lni-bar-chart-4"></i>
+            <span>Academic Progress</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="skilldev.html" class="sidebar-link">
+            <i class="lni lni-laravel"></i>
+            <span>Skill Development</span>
+          </a>
+        </li>
+      </ul>
+
+      <!-- Logout -->
+      <div class="sidebar-footer" style="margin-bottom: 20px;">
+        <a href="landing.html" class="sidebar-link logout">
+          <i class="lni lni-exit"></i>
+          <span>Logout</span>
+        </a>
+      </div>
+    </aside>
+    <!-- Sidebar End -->
+
+    <!-- Main Start -->
+    <div class="main p-3">
+      <div class="container" style="margin-top: 90px;">
+        <div class="feed">
+          <!-- Create Post Section -->
+          <div class="create-post">
+            <h4>Share an Update</h4>
+            <form id="post-form">
+              <div class="mb-3">
+                <textarea class="form-control" id="post-content" rows="3" placeholder="What's on your mind?"></textarea>
+              </div>
+              <div class="mb-3">
+                <input type="file" class="form-control" id="post-image" accept="image/*">
+                <small class="text-muted">Optional: Attach an image (JPG, PNG, etc.)</small>
+              </div>
+              <button type="submit" class="btn btn-primary">Post</button>
+            </form>
+          </div>
+
+          <!-- Posts Feed -->
+          <div id="posts-container">
+            <!-- Sample Post 1 -->
+            <div class="post-card">
+              <div class="post-header">
+                <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="User Avatar" class="post-avatar">
+                <div>
+                  <strong>John Doe</strong><br>
+                  <small class="text-muted">2 hours ago</small>
+                </div>
+              </div>
+              <p>Excited to share my latest project on AI in education! Check it out and let me know your thoughts.</p>
+              <img src="Images/ai_project.avif" alt="Post Image" class="post-image">
+              <div class="post-actions">
+                <button class="like-btn"><i class="lni lni-thumbs-up-3"></i> Like <span class="like-count">0</span></button>
+                <button class="comment-btn"><i class="lni lni-comment-1"></i> Comment <span class="comment-count">0</span></button>
+                <button class="share-btn"><i class="lni lni-share-1"></i> Share</button>
+              </div>
+              <div class="comments-section">
+                <div class="comments-list"></div>
+                <form class="comment-form">
+                  <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Add a comment..." required>
+                    <button class="btn btn-outline-primary" type="submit">Post</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+            <!-- Sample Post 2 -->
+            <div class="post-card">
+              <div class="post-header">
+                <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="User Avatar" class="post-avatar">
+                <div>
+                  <strong>Jane Smith</strong><br>
+                  <small class="text-muted">1 day ago</small>
+                </div>
+              </div>
+              <p>Just finished an amazing course on web development. Highly recommend it to everyone!</p>
+              <div class="post-actions">
+                <button class="like-btn"><i class="lni lni-thumbs-up-3"></i> Like <span class="like-count">0</span></button>
+                <button class="comment-btn"><i class="lni lni-comment-1"></i> Comment <span class="comment-count">0</span></button>
+                <button class="share-btn"><i class="lni lni-share-1"></i> Share</button>
+              </div>
+              <div class="comments-section">
+                <div class="comments-list"></div>
+                <form class="comment-form">
+                  <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Add a comment..." required>
+                    <button class="btn btn-outline-primary" type="submit">Post</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Main End -->
+  </div>
+
+  <script src="sidebar.js"></script>
+  <script src="jquery-3.7.1.js"></script>
+  <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script>
+
+    // Handle post creation with image support
+    document.getElementById('post-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const content = document.getElementById('post-content').value.trim();
+      const imageFile = document.getElementById('post-image').files[0];
+      
+      if (!content && !imageFile) return; // Require at least text or image
+      
+      const postsContainer = document.getElementById('posts-container');
+      const newPost = document.createElement('div');
+      newPost.className = 'post-card';
+      
+      let imageHtml = '';
+      if (imageFile) {
+        const reader = new FileReader();
+        reader.onload = function(event) {
+          const imgElement = document.createElement('img');
+          imgElement.src = event.target.result;
+          imgElement.alt = 'Post Image';
+          imgElement.className = 'post-image';
+          newPost.appendChild(imgElement);
+        };
+        reader.readAsDataURL(imageFile);
+      }
+      
+      newPost.innerHTML = `
+        <div class="post-header">
+          <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="User Avatar" class="post-avatar">
+          <div>
+            <strong>You</strong><br>
+            <small class="text-muted">Just now</small>
+          </div>
+        </div>
+        ${content ? `<p>${content}</p>` : ''}
+        <div class="post-actions">
+          <button class="like-btn"><i class="lni lni-thumbs-up-3"></i> Like <span class="like-count">0</span></button>
+          <button class="comment-btn"><i class="lni lni-comment-1"></i> Comment <span class="comment-count">0</span></button>
+          <button class="share-btn"><i class="lni lni-share-1"></i> Share</button>
+        </div>
+        <div class="comments-section">
+          <div class="comments-list"></div>
+          <form class="comment-form">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Add a comment..." required>
+              <button class="btn btn-outline-primary" type="submit">Post</button>
+            </div>
+          </form>
+        </div>
+      `;
+      
+      postsContainer.insertBefore(newPost, postsContainer.firstChild);
+      document.getElementById('post-content').value = ''; // Clear textarea
+      document.getElementById('post-image').value = ''; // Clear file input
+
+      // Attach event listeners to the new post
+      attachPostEventListeners(newPost);
+    });
+
+    // Function to attach event listeners to posts
+    function attachPostEventListeners(post) {
+      const likeBtn = post.querySelector('.like-btn');
+      const commentBtn = post.querySelector('.comment-btn');
+      const shareBtn = post.querySelector('.share-btn');
+      const commentsSection = post.querySelector('.comments-section');
+      const commentForm = post.querySelector('.comment-form');
+      const commentsList = post.querySelector('.comments-list');
+      const likeCount = post.querySelector('.like-count');
+      const commentCount = post.querySelector('.comment-count');
+
+      let liked = false;
+      let likes = 0;
+      let comments = 0;
+
+      likeBtn.addEventListener('click', function() {
+        liked = !liked;
+        likes += liked ? 1 : -1;
+        likeCount.textContent = likes;
+        likeBtn.classList.toggle('liked', liked);
+      });
+
+      commentBtn.addEventListener('click', function() {
+        commentsSection.style.display = commentsSection.style.display === 'block' ? 'none' : 'block';
+      });
+
+      shareBtn.addEventListener('click', function() {
+        // Simple share: copy URL or alert
+        navigator.clipboard.writeText(window.location.href).then(() => {
+          alert('Post link copied to clipboard!');
+        }).catch(() => {
+          alert('Share this post: ' + window.location.href);
+        });
+      });
+
+      commentForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const commentInput = commentForm.querySelector('input');
+        const commentText = commentInput.value.trim();
+        if (commentText) {
+          const commentDiv = document.createElement('div');
+          commentDiv.className = 'comment';
+          commentDiv.innerHTML = `<strong>You:</strong> ${commentText}`;
+          commentsList.appendChild(commentDiv);
+          comments++;
+          commentCount.textContent = comments;
+          commentInput.value = '';
+        }
+      });
+    }
+
+    // Attach event listeners to existing posts
+    document.querySelectorAll('.post-card').forEach(attachPostEventListeners);
+
+    $(window).on("load",function(){
+        $(".loader-wrapper").fadeOut("slow");
+    });
+
+  </script>
+</body>
+</html>

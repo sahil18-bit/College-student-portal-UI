@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EduPlus/Dashboard</title>
+  <link rel="stylesheet" href="sidebar.css">
+  <link rel="stylesheet" href="dashboard.css">
+  <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+  <link rel="stylesheet" href="https://cdn.lineicons.com/5.0/lineicons.css" />
+  <style>
+    body {
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      min-height: 100vh;
+      margin: 0;
+    }
+    
+    .main {
+      margin-left: 70px;
+      transition: margin-left 0.235s ease-in-out;
+    }
+    #sidebar.expand ~ .main {
+      margin-left: 260px;
+    }
+    #sidebar.expand ~ nav#navbar {
+      margin-left: 260px;
+    }
+    @media (max-width: 768px) {
+      .main {
+        margin-left: 0;
+      }
+      #sidebar.expand ~ .main {
+        margin-left: 0;
+      }
+      #sidebar.expand ~ nav#navbar {
+        margin-left: 0;
+      }
+      #sidebar {
+        transform: translateX(-100%);
+      }
+      #sidebar.expand {
+        transform: translateX(0);
+      }
+    }
+    .card {
+      width: 100%;
+      height: 100%;
+      border-radius: 40px;
+      position: relative;
+      padding: 1.8rem;
+      border: 2px solid #e0e0e0;
+      transition: 0.5s ease-out;
+      overflow: visible;
+      min-height: 300px; /* Added min-height to make cards bigger vertically */
+    }
+    .card-details {
+      color: black;
+      height: 100%;
+      gap: 10px;
+      display: grid;
+      place-content: center;
+    }
+    .card-button {
+      text-align: center;
+      text-decoration: none;
+      position: absolute;
+      bottom: 20px;
+      font-size: 1rem;
+      left: 50%;
+      width: calc(100% - 3.6rem);
+      transform: translateX(-50%);
+      padding: .5rem 1rem;
+      border: none;
+      background-color: #0e223e;
+      color: white;
+      opacity: 0;
+      border-radius: 40px;
+      cursor: pointer;
+      transition: opacity 0.3s ease, background-color 0.3s ease;
+    }
+    .card:hover .card-button {
+      opacity: 1;
+    }
+    .card:hover {
+      border-color: #0e223e;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+    .table-responsive {
+      max-height: 400px;
+      overflow-y: auto;
+    }
+  </style>
+</head>
+<body>
+  <!--Navbar Start-->
+  <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top z-3" id="navbar" style="margin-left: 70px;">
+    <div class="container-fluid">
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="nav nav-tabs mx-auto" style="text-decoration: none;">
+          <li class="nav-item">
+            <a class="nav-link active" href="#" style="margin-left: 80px;">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="faculty_social.html" style="margin-left: 80px;">Social</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="faculty_notice.html" style="margin-left: 80px;">Notices</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#about" style="margin-left: 80px;">AI-Help</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-icon pe-md-0" href="login.html" style="margin-right: 30px;" data-bs-toggle="dropdown">
+              <img src="https://cdn-icons-png.flaticon.com/512/3135/3135768.png" class="avatar img-fluid" alt="User" width="44"/>
+            </a>
+            <div class="dropdown-menu dropdown-menu-end rounded-0 border-0 shadow mt-3">
+              <a class="dropdown-item" href="profile.html">My Profile</a>
+              <a class="dropdown-item" href="#">Settings</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="landing.html">Logout</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!--Navbar End-->
+
+  <!--Sidebar Start-->
+  <div class="wrapper">
+    <aside id="sidebar" class="fixed-top">
+      <!--logo-->
+      <div class="d-flex">
+        <button id="toggle-btn" type="button">
+          <i class="lni lni-layout-9"></i>
+        </button>
+        <div class="sidebar-logo">
+          <a href="#" class="logo"><span class="text-warning">Edu</span>Plus</a>
+        </div>
+      </div>
+
+      <!--list-->
+      <ul class="sidebar-nav">
+        <li class="sidebar-item">
+          <a href="faculty_dashboard.html" class="sidebar-link">
+            <i class="lni lni-dashboard-square-1"></i>
+            <span>Dashboard</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="faculty_assignment.html" class="sidebar-link">
+            <i class="lni lni-notebook-1"></i>
+            <span>Assignments</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="faculty_attendance.html" class="sidebar-link">
+            <i class="lni lni-calendar-days"></i>
+            <span>Attendance</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="faculty_studym.html" class="sidebar-link">
+            <i class="lni lni-books-2"></i>
+            <span>Study Materials</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="faculty_project.html" class="sidebar-link">
+            <i class="lni lni-gears-3"></i>
+            <span>Project</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="faculty_academic_progress.html" class="sidebar-link active">
+            <i class="lni lni-bar-chart-4"></i>
+            <span>Academic Progress</span>
+          </a>
+        </li>
+      </ul>
+      <!--logout-->
+      <div class="sidebar-footer" style="margin-bottom: 20px;">
+        <a href="landing.html" class="sidebar-link logout">
+          <i class="lni lni-exit"></i>
+          <span>Logout</span>
+        </a>
+      </div>
+    </aside>
+    <!--Sidebar End-->
+
+    <!--Main start-->
+    <div class="main p-3">
+      <div class="container" style="margin-top: 90px;">
+        <div class="row g-3">
+          <!-- Academic Progress Chart Card -->
+          <div class="col-lg-12 col-md-6 col-sm-12">
+            <div class="card h-100">
+              <div class="card-details">
+                <canvas id="myChart1"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <!-- Academic Progress Chart2 Card -->
+        <div class="col-lg-12 col-md-6 col-sm-12">
+            <div class="card h-100">
+              <div class="card-details">
+                <canvas id="myChart2"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <!-- Detailed Marks Table Card -->
+          <div class="col-lg-12 col-md-6 col-sm-12">
+            <div class="card h-100">
+              <div class="card-details">
+                <h4>📈 Detailed Academic Progress</h4>
+                <div class="table-responsive">
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th scope="col">Subject</th>
+                        <th scope="col">M1 (out of 10)</th>
+                        <th scope="col">M2 (out of 10)</th>
+                        <th scope="col">TEE (out of 100)</th>
+                        <th scope="col">Final Percentage (%)</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Calculus</td>
+                        <td>8.5</td>
+                        <td>9.0</td>
+                        <td>85</td>
+                        <td>88.5</td>
+                      </tr>
+                      <tr>
+                        <td>MAE</td>
+                        <td>7.5</td>
+                        <td>8.0</td>
+                        <td>78</td>
+                        <td>81.0</td>
+                      </tr>
+                      <tr>
+                        <td>PPS</td>
+                        <td>9.0</td>
+                        <td>8.5</td>
+                        <td>90</td>
+                        <td>91.5</td>
+                      </tr>
+                      <tr>
+                        <td>BDS</td>
+                        <td>8.0</td>
+                        <td>8.5</td>
+                        <td>82</td>
+                        <td>84.5</td>
+                      </tr>
+                      <tr>
+                        <td>FWD</td>
+                        <td>9.5</td>
+                        <td>9.0</td>
+                        <td>92</td>
+                        <td>93.5</td>
+                      </tr>
+                      <tr>
+                        <td>CT</td>
+                        <td>8.5</td>
+                        <td>8.0</td>
+                        <td>88</td>
+                        <td>89.5</td>
+                      </tr>
+                      <tr>
+                        <td>Biology</td>
+                        <td>7.0</td>
+                        <td>7.5</td>
+                        <td>75</td>
+                        <td>77.5</td>
+                      </tr>
+                      <tr>
+                        <td>ES</td>
+                        <td>8.5</td>
+                        <td>9.0</td>
+                        <td>87</td>
+                        <td>89.5</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Download Report Card -->
+          <div class="col-lg-12 col-md-6 col-sm-12">
+            <div class="card h-100">
+              <div class="card-details">
+                <h4>📊 Detailed Academic Progress Report</h4>
+                <p>Download a comprehensive report of your academic progress including marks and percentages.</p>
+                <a href="academic_progress_report.pdf" download class="btn btn-primary">Download Report</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Main end-->
+  </div>
+
+
+  <script src="sidebar.js"></script>
+  <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="jquery-3.7.1.js"></script>
+
+ <script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getFirestore } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAYkfHoEk6lkvphbBQy4HAnEj_bPkCo69Y",
+  authDomain: "univsersity-portal.firebaseapp.com",
+  projectId: "univsersity-portal",
+  storageBucket: "univsersity-portal.firebasestorage.app",
+  messagingSenderId: "496336500693",
+  appId: "1:496336500693:web:56ad92c33b32ed874c6f5c"
+};
+
+  // 🔹 Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  // 🔹 Function to load marks from Firestore
+  async function loadChartData() {
+    // Example: Fetching data for one student (you can replace with dynamic SAP ID)
+    const docRef = doc(db, "academic_progress", "60004210023");
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      const data = docSnap.data();
+      console.log("📘 Fetched Data:", data);
+
+      // Use Firestore data (fallback to defaults if missing)
+      const subjects = data.subjects || ['Calculus', 'MAE', 'PPS', 'BDS', 'FWD', 'CT', 'Biology', 'ES'];
+      const M1 = data.M1 || [8.5, 7.5, 9.0, 8.0, 9.5, 8.5, 7.0, 8.5];
+      const M2 = data.M2 || [9.0, 8.0, 8.5, 8.5, 9.0, 8.0, 7.5, 9.0];
+      const TEE = data.TEE || [85, 78, 90, 82, 92, 88, 75, 87];
+      const finalPercent = data.finalPercent || [88.5, 81.0, 91.5, 84.5, 93.5, 89.5, 77.5, 89.5];
+
+      // Draw your first chart
+      const ctx = document.getElementById('myChart1');
+      new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: subjects,
+          datasets: [{
+            label: 'M1 (out of 10)',
+            data: M1,
+            backgroundColor: 'rgba(54, 162, 235, 0.6)',
+            borderColor: 'rgba(54, 162, 235, 1)',
+            borderWidth: 1
+          }, {
+            label: 'M2 (out of 10)',
+            data: M2,
+            backgroundColor: 'rgba(255, 99, 132, 0.6)',
+            borderColor: 'rgba(255, 99, 132, 1)',
+            borderWidth: 1
+          }, {
+            label: 'TEE (out of 100)',
+            data: TEE,
+            backgroundColor: 'rgba(75, 192, 192, 0.6)',
+            borderColor: 'rgba(75, 192, 192, 1)',
+            borderWidth: 1
+          }]
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true,
+              title: {
+                display: true,
+                text: 'Marks'
+              }
+            },
+            x: {
+              title: {
+                display: true,
+                text: 'Subject'
+              }
+            }
+          },
+          plugins: {
+            legend: {
+              display: true,
+              position: 'top'
+            }
+          }
+        }
+      });
+
+      // Draw your second chart
+      const ctx2 = document.getElementById('myChart2');
+      new Chart(ctx2, {
+        type: 'line',
+        data: {
+          labels: subjects,
+          datasets: [{
+            label: 'Final Percentage (%)',
+            data: finalPercent,
+            fill: false,
+            borderColor: 'rgba(153, 102, 255, 1)',
+            tension: 0.1
+          }]
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true,
+              title: {
+                display: true,
+                text: 'Percentage (%)'
+              }
+            },
+            x: {
+              title: {
+                display: true,
+                text: 'Subject'
+              }
+            }
+          },
+          plugins: {
+            legend: {
+              display: true,
+              position: 'top'
+            }
+          }
+        }
+      });
+
+    } else {
+      console.log("❌ No academic progress data found for this student.");
+    }
+  }
+
+  // Load the data + charts
+  loadChartData();
+</script>
+</body>
+</html>

@@ -1,0 +1,293 @@
+   
+
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dasboard</title>
+    <link rel="stylesheet" href="sidebar.css">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdn.lineicons.com/5.0/lineicons.css" />
+    <style>
+    body {
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      min-height: 100vh;
+      margin: 0;
+    }
+    .main {
+      margin-left: 70px;
+      transition: margin-left 0.235s ease-in-out;
+    }
+      .card {
+      width: 100%;
+      width:50vh;
+      height: 100%;
+      border-radius: 40px;
+      position: relative;
+      padding: 1.8rem;
+      border: 2px solid #e0e0e0;
+      transition: 0.5s ease-out;
+      overflow: visible;
+      min-height: 300px; /* Added min-height to make cards bigger vertically */
+    }
+    .card-text {
+      color: black;
+      height: 100%;
+      gap: 10px;
+      display: grid;
+      place-content: center;
+    }
+    .card-button {
+      text-align: center;
+      text-decoration: none;
+      position: absolute;
+      bottom: 20px;
+      font-size: 1rem;
+      left: 50%;
+      width: calc(100% - 3.6rem);
+      transform: translateX(-50%);
+      padding: .5rem 1rem;
+      border: none;
+      background-color: #0e223e;
+      color: white;
+      opacity: 0;
+      border-radius: 40px;
+      cursor: pointer;
+      transition: opacity 0.3s ease, background-color 0.3s ease;
+    }
+    .card:hover .card-button {
+      opacity: 1;
+    }
+    .card:hover {
+      border-color: #0e223e;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+    #sidebar.expand ~ .main {
+      margin-left: 260px;
+    }
+    </style>
+</head>
+<body>
+
+  <!--Navbar Start-->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top z-3"  id="navbar" style="margin-left: 70px;">
+    <div class="container-fluid">
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="nav nav-tabs mx-auto" style="text-decoration: none;">
+
+
+          <li class="nav-item">
+            <a class="nav-link active" href="#" style="margin-left: 80px;">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="social.html" style="margin-left: 80px;">Social</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="notice.html" style="margin-left: 80px;">Notices</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#about" style="margin-left: 80px;">AI-Help</a>
+          </li>
+      
+        </ul>
+        <ul class="navbar-nav ms-auto">
+
+          <li class="nav-item">
+            <a class="nav-icon pe-md-O" href="login.html" style="margin-right: 30px;" data-bs-toggle="dropdown">
+              <div class="container">
+              <img src="https://cdn-icons-png.flaticon.com/512/3135/3135768.png" alt="User" width="44"/>
+              </div>
+            </a>
+              <div class="dropdown-menu dropdown-menu-end rounded-0 border-0 shadow mt-3">
+              <a class="dropdown-item" href="profile.html">My Profile</a>
+              <a class="dropdown-item" href="#">Settings</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="landing.html">Logout</a>
+      
+        </ul>
+
+      </div>
+    </div>
+  </nav>
+
+
+  <!--Navbar End-->
+
+
+
+  <!--Sidebar Start-->
+  <div class="wrapper">
+    <aside id="sidebar" class="fixed-top">
+      <!--logo-->
+      <div class="d-flex">
+        <button id="toggle-btn" type="button">
+          <i class="lni lni-layout-9"></i>
+        </button>
+        <div class="sidebar-logo">
+          <a href="#" class="logo"><span class="text-warning">Edu</span>Plus</a>
+        </div>
+      </div>
+
+      <!--list-->
+      <ul class="sidebar-nav">
+
+
+        <li class="sidebar-item">
+          <a href="dashboard.html" class="sidebar-link ">
+            <i class="lni lni-dashboard-square-1"></i>
+            <span>Dashboard</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="assignment.html" class="sidebar-link">
+            <i class="lni lni-notebook-1"></i>
+            <span>Assignments</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="attendance.html" class="sidebar-link ">
+              <i class="lni lni-calendar-days"></i>
+            <span>Attendance</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="studym.html" class="sidebar-link">
+            <i class="lni lni-books-2"></i>
+            <span>Study Materials</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="project.html" class="sidebar-link">
+            <i class="lni lni-gears-3"></i>
+            <span>Project</span>
+          </a>
+        </li>
+                <li class="sidebar-item">
+          <a href="academic_progress.html" class="sidebar-link ">
+            <i class="lni lni-bar-chart-4"></i>
+            <span>Academic Progress</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="#" class="sidebar-link active">
+            <i class="lni lni-laravel"></i>
+            <span>Skill Development</span>
+          </a>
+        </li>
+      </ul>
+      <!--logout-->
+      <div class="sidebar-footer"  style="margin-bottom: 20px;">
+          <a href="landing.html" class="sidebar-link logout">
+            <i class="lni lni-exit"></i>
+            <span>Logout</span>
+          </a>
+      </div>
+    </aside>
+    <!--Sidebar End-->
+
+
+
+
+    <!--Main  start-->
+
+<!--Main  start-->
+<div class="main p-5">
+  <div id="skillSection" style="display:block;">
+    <div class="container-fluid" style="margin-bottom: 40px;">
+      <div class="row justify-content-center">
+        <div class="col-md-4 mb-4 d-flex justify-content-center">
+          <a href="https://youtu.be/-91VB6zuK5A?si=M-EdLc-vhYfMCs_" target="_blank" style="text-decoration: none; color: inherit;">
+            <div class="card w-100" style="width: 18rem; margin-top: 80px;">
+              <img src="Images/drone.jpg" class="card-img-top" alt="...">
+              <div class="card-body">
+                <p class="card-text">Drone Technology</p>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="col-md-4 mb-4 d-flex justify-content-center">
+          <a href="https://youtu.be/V_xro1bcAuA?si=NOXXBDy2g-sMdxCX" target="_blank" style="text-decoration: none; color: inherit;">
+            <div class="card w-100" style="width: 18rem; margin-top: 80px;">
+              <img src="Images/ml.jpg" class="card-img-top" alt="...">
+              <div class="card-body">
+                <p class="card-text">Introduction to Machine Learning</p>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="col-md-4 mb-4 d-flex justify-content-center">
+          <a href="https://youtu.be/2LaAJq1lB1Q?si=FWb2i7GfAKoBgjtL" target="_blank" style="text-decoration: none; color: inherit;">
+            <div class="card w-100" style="width: 18rem; margin-top: 80px;">
+              <img src="Images/cloud.jpg" class="card-img-top" alt="...">
+              <div class="card-body">
+                <p class="card-text">Cloud Computing Basics</p>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="row justify-content-center">
+        <div class="col-md-4 mb-4 d-flex justify-content-center">
+          <a href="https://youtu.be/cTUD_vCrY7M?si=BoReA9I4A_0QNkuq" target="_blank" style="text-decoration: none; color: inherit;">
+            <div class="card w-100" style="width: 18rem; margin-top: 80px; margin-bottom: 40px;">
+              <img src="Images/uiux.jpg" class="card-img-top" alt="...">
+              <div class="card-body">
+                <p class="card-text">UI-UX Design</p>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="col-md-4 mb-4 d-flex justify-content-center">
+          <a href="https://www.youtube.com/watch?v=KA_wOqYc1zo&list=PLG4Yor99jlgmJS7cptBvER0HKFwa9cGSG" target="_blank" style="text-decoration: none; color: inherit;">
+            <div class="card w-100" style="width: 18rem; margin-top: 80px; margin-bottom: 40px;">
+              <img src="Images/blockchain.jpg" class="card-img-top" alt="...">
+              <div class="card-body">
+                <p class="card-text">Block chain technology</p>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="col-md-4 mb-4 d-flex justify-content-center">
+          <a href="https://youtu.be/ob1yS9g-Zcs?si=GM16db0iVjtLre2q" target="_blank" style="text-decoration: none; color: inherit;">
+            <div class="card w-100" style="width: 18rem; margin-top: 80px; margin-bottom: 40px;">
+              <img src="Images/neural.jpg" class="card-img-top" alt="...">
+              <div class="card-body">
+                <p class="card-text">Neural Networks</p>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--Main end-->
+  <!--Main end-->
+
+
+    <script src="sidebar.js"></script>
+    <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script>
+
+    $("#skillDev").click(function (e) {
+    e.preventDefault();
+    $("#vcontent").show();
+    $("#content").hide();
+    $("#skillSection").show();
+    $("#assignmentsSection, #attendanceSection, #studySection, #projectSection, #academicSection, #moduleSection, #PQSection").hide();
+  });
+
+    </script>
+</body>
+</html>
+
+
+
