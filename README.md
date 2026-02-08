@@ -27,6 +27,7 @@ database operations, and APIs has not been implemented yet.
 - Uploading Projects
 - Section for research paper
 - Student profile page
+- Option to connect with your peers
 
  Faculty Module (UI)
 - Faculty login page
@@ -37,6 +38,8 @@ database operations, and APIs has not been implemented yet.
 - Uploading an assignment
 - Uploading a notice
 - Uploading a project
+- Option to connect with your colleagues
+  
 
  🛠️ Tech Stack
 - HTML5
